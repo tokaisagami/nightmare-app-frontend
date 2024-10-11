@@ -7,6 +7,7 @@ WORKDIR /app
 # 依存関係をインストールする
 COPY package*.json ./
 RUN npm install
+RUN npm install --save-dev typescript
 
 # アプリケーションのソースコードをコピー
 COPY . .
