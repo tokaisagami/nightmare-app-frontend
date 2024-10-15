@@ -1,5 +1,5 @@
 # 基盤となるイメージ
-FROM node:14
+FROM node:18
 
 # 作業ディレクトリを設定
 WORKDIR /app
