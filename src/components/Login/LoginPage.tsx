@@ -1,8 +1,12 @@
+// src/components/Login/LoginPage.tsx
 import React, { useState, FormEvent } from 'react';
+import { useDispatch } from 'react-redux';
+import { login } from '../../store/slices/authSlice';
 
 const LoginPage = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const dispatch = useDispatch();
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -18,6 +22,7 @@ const LoginPage = () => {
       const data = await response.json();
       if (response.ok) {
         console.log('Login successful:', data);
+        dispatch(login());  // ログイン状態を更新
       } else {
         console.error('Login failed:', data);
       }
