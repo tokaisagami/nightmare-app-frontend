@@ -8,8 +8,8 @@ const Header = () => {
   const dispatch = useDispatch();
 
   return (
-    <header className="bg-gray-800 text-white p-4 flex justify-between items-center">
-      <h1 className="text-xl font-bold">My App</h1>
+    <header className="bg-purple-500 text-white p-4 flex justify-between items-center">
+      <h1 className="text-xl font-bold">Nigtmare-app</h1>
       {isLoggedIn ? (
         <nav>
           <ul className="flex space-x-4">
@@ -20,8 +20,8 @@ const Header = () => {
       ) : (
         <nav>
           <ul className="flex space-x-4">
-            <li><a className="hover:text-gray-400" href="/login">Login</a></li>
-            <li><a className="hover:text-gray-400" href="/signup">Signup</a></li>
+            <li><a className="hover:text-gray-400" href="/login">ログイン</a></li>
+            <li><a className="hover:text-gray-400" href="/signup">ゲストログイン</a></li>
           </ul>
         </nav>
       )}
