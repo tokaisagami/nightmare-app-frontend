@@ -2,10 +2,14 @@ import React, { useState, FormEvent } from 'react';
 import { useDispatch } from 'react-redux';
 import { login } from '../../store/slices/authSlice';
 import { Link } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 
 const LoginPage = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const location = useLocation();
+  const state = location.state as { email: string; password: string } | undefined;
+
+  const [email, setEmail] = useState(state?.email || ''); // 初期状態を遷移時の状態に設定
+  const [password, setPassword] = useState(state?.password || '');
   const dispatch = useDispatch();
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
@@ -67,7 +71,7 @@ const LoginPage = () => {
             />
           </div>
           <div className="mb-4">
-            <label className="block text-gray-700 mb-2">Password:</label>
+            <label className="block text-gray-700 mb-2">パスワード:</label>
             <input 
               type="password" 
               value={password} 
@@ -77,7 +81,9 @@ const LoginPage = () => {
             />
           </div>
           <div className="flex flex-col space-y-4 items-center">
-            <button type="submit" className="w-2/4 bg-green-300 hover:bg-emerald-500 text-gray-600 hover:text-white font-bold py-2 px-4 rounded">
+            <button
+              type="submit" 
+              className="w-2/4 bg-green-300 hover:bg-emerald-500 text-gray-600 hover:text-white font-bold py-2 px-4 rounded">
               ログイン
             </button>
             <button type="button" onClick={handleGuestLogin} className="w-2/4 bg-amber-200 hover:bg-yellow-400 text-gray-600 font-bold py-2 px-4 rounded">
@@ -86,7 +92,7 @@ const LoginPage = () => {
           </div>
         </form>
         <div className="mt-4 text-center">
-          <Link to="../signup" className="text-blue-500 hover:text-blue-700">新規ユーザー登録はこちら</Link>
+          <Link to="/signup" className="text-blue-500 hover:text-blue-700">新規登録へ</Link>
         </div>
       </div>
     </div>
