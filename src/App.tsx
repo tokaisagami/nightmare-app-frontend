@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import PlaceholderPage from './PlaceholderPage';
 import LoginPage from './components/Login/LoginPage';
 import Header from './components/Header/Header';
+import UserSignupPage from './components/Signup/UserSignupPage';
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
       <Routes>
         <Route path="/placeholder" element={<PlaceholderPage />} />
         <Route path="/login" element={<LoginPage />} />
+        <Route path="/signup" element={<UserSignupPage />} />
       </Routes>
     </Router>
   );
