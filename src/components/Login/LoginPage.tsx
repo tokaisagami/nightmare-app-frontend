@@ -67,7 +67,7 @@ const LoginPage = () => {
               value={email} 
               onChange={(e) => setEmail(e.target.value)} 
               required 
-              className="w-full p-2 border border-gray-300 rounded" 
+              className="w-full p-2 border border-gray-300 rounded bg-gray-50" 
             />
           </div>
           <div className="mb-4">
@@ -77,7 +77,7 @@ const LoginPage = () => {
               value={password} 
               onChange={(e) => setPassword(e.target.value)} 
               required 
-              className="w-full p-2 border border-gray-300 rounded" 
+              className="w-full p-2 border border-gray-300 rounded bg-gray-50" 
             />
           </div>
           <div className="flex flex-col space-y-4 items-center">
