@@ -1,6 +1,7 @@
 import React, { useState, FormEvent } from 'react';
 import { useDispatch } from 'react-redux';
 import { login } from '../../store/slices/authSlice';
+import { Link } from 'react-router-dom';
 
 const LoginPage = () => {
   const [email, setEmail] = useState('');
@@ -62,7 +63,7 @@ const LoginPage = () => {
               value={email} 
               onChange={(e) => setEmail(e.target.value)} 
               required 
-              className="w-full p-2 border border-gray-300 rounded"
+              className="w-full p-2 border border-gray-300 rounded" 
             />
           </div>
           <div className="mb-4">
@@ -72,7 +73,7 @@ const LoginPage = () => {
               value={password} 
               onChange={(e) => setPassword(e.target.value)} 
               required 
-              className="w-full p-2 border border-gray-300 rounded"
+              className="w-full p-2 border border-gray-300 rounded" 
             />
           </div>
           <div className="flex flex-col space-y-4 items-center">
@@ -84,9 +85,12 @@ const LoginPage = () => {
             </button>
           </div>
         </form>
+        <div className="mt-4 text-center">
+          <Link to="../signup" className="text-blue-500 hover:text-blue-700">新規ユーザー登録はこちら</Link>
+        </div>
       </div>
     </div>
   );
 };
-  
+
 export default LoginPage;
