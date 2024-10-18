@@ -8,12 +8,13 @@ import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons'; // 必要
 
 const LoginPage = () => {
   const location = useLocation();
-  const state = location.state as { email: string; password: string } | undefined;
+  const state = location.state as { email: string; password: string; message: string; messageType: 'success' | 'error' } | undefined;
 
   const [email, setEmail] = useState(state?.email || ''); // 初期状態を遷移時の状態に設定
   const [password, setPassword] = useState(state?.password || '');
   const [showPassword, setShowPassword] = useState(false);
-  const [showPasswordConfirmation, setShowPasswordConfirmation] = useState(false);
+  const [message, setMessage] = useState(state?.message || null);
+  const [messageType, setMessageType] = useState(state?.messageType || null);
 
   const dispatch = useDispatch();
 
@@ -21,7 +22,7 @@ const LoginPage = () => {
     event.preventDefault();
 
     try {
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/v1/login`, {
+      const response = await fetch(`${import.meta.env.REACT_APP_API_URL}/api/v1/login`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -42,7 +43,7 @@ const LoginPage = () => {
 
   const handleGuestLogin = async () => {
     try {
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/v1/guest_login`, {
+      const response = await fetch(`${import.meta.env.VITE_APP_API_URL}/api/v1/guest_login`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -64,6 +65,11 @@ const LoginPage = () => {
     <div className="flex justify-center items-center min-h-screen bg-gray-100">
       <div className="bg-white p-8 rounded-lg shadow-md border border-gray-300 w-full max-w-md">
         <h1 className="text-2xl mb-4 text-center">ログイン</h1>
+        {message && (  // メッセージ表示部分を追加
+          <div className={`p-4 mb-4 text-sm rounded ${messageType === 'success' ? 'bg-green-200 text-green-800' : 'bg-red-200 text-red-800'}`}>
+            {message}
+          </div>
+        )}
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
             <label className="block text-gray-700 mb-2">Email:</label>
