@@ -2,18 +2,23 @@ import React, { useState, FormEvent } from 'react';
 import { useDispatch } from 'react-redux';
 import { register } from '../../store/slices/registerSlice';
 import { useNavigate } from 'react-router-dom'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'; // FontAwesomeのインポート
+import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons'; // 必要なアイコンのインポート
 
 const UserSignupPage: React.FC = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [passwordConfirmation, setPasswordConfirmation] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
+  const [showPasswordConfirmation, setShowPasswordConfirmation] = useState(false);
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-  
+
     try {
       const response = await fetch(`${process.env.REACT_APP_API_URL}/api/v1/signup`, {
         method: 'POST',
@@ -42,49 +47,66 @@ const UserSignupPage: React.FC = () => {
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
             <label className="block text-gray-700 mb-2">名前:</label>
-            <input 
-              type="text" 
-              value={name} 
-              onChange={(e) => setName(e.target.value)} 
-              required 
-              className="w-full p-2 border border-gray-300 rounded bg-gray-50" 
+            <input
+              type="text"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              required
+              className="w-full p-2 border border-gray-300 rounded bg-gray-50"
             />
           </div>
           <div className="mb-4">
             <label className="block text-gray-700 mb-2">Email:</label>
-            <input 
-              type="email" 
-              value={email} 
-              onChange={(e) => setEmail(e.target.value)} 
-              required 
-              className="w-full p-2 border border-gray-300 rounded bg-gray-50" 
+            <input
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+              className="w-full p-2 border border-gray-300 rounded bg-gray-50"
             />
           </div>
-          <div className="mb-4">
+          <div className="mb-4 relative">
             <label className="block text-gray-700 mb-2">パスワード:</label>
-            <input 
-              type="password" 
-              value={password} 
-              onChange={(e) => setPassword(e.target.value)} 
-              required 
-              className="w-full p-2 border border-gray-300 rounded bg-gray-50" 
-            />
+            <div className="relative">
+              <input
+                type={showPassword ? "text" : "password"}
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+                className="w-full p-2 border border-gray-300 rounded bg-gray-50"
+              />
+              <span
+                onClick={() => setShowPassword(!showPassword)}
+                className="absolute right-3 top-1/2 transform -translate-y-1/2 cursor-pointer opacity-50 hover:opacity-100"
+              >
+                <FontAwesomeIcon icon={showPassword ? faEyeSlash : faEye} />
+              </span>
+            </div>
           </div>
-          <div className="mb-4">
+
+          <div className="mb-4 relative">
             <label className="block text-gray-700 mb-2">パスワード（確認）:</label>
-            <input 
-              type="password" 
-              value={passwordConfirmation} 
-              onChange={(e) => setPasswordConfirmation(e.target.value)} 
-              required 
-              className="w-full p-2 border border-gray-300 rounded bg-gray-50" 
-            />
+            <div className="relative">
+              <input
+                type={showPasswordConfirmation ? "text" : "password"}
+                value={passwordConfirmation}
+                onChange={(e) => setPasswordConfirmation(e.target.value)}
+                required
+                className="w-full p-2 border border-gray-300 rounded bg-gray-50"
+              />
+              <span
+                onClick={() => setShowPasswordConfirmation(!showPasswordConfirmation)}
+                className="absolute right-3 top-1/2 transform -translate-y-1/2 cursor-pointer opacity-50 hover:opacity-100"
+              >
+                <FontAwesomeIcon icon={showPasswordConfirmation ? faEyeSlash : faEye} />
+              </span>
+            </div>
           </div>
           <div className="flex flex-col space-y-4 items-center">
             <button type="submit" className="w-2/4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
               登録
             </button>
-         </div>
+          </div>
         </form>
       </div>
     </div>
