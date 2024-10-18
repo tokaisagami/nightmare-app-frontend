@@ -10,6 +10,4 @@ const config = {
   plugins: [],
 };
 
-console.log(config); // デバッグ用の出力
-
 module.exports = config; // CommonJS形式でエクスポート
