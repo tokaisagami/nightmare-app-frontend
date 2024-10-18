@@ -3,6 +3,8 @@ import { useDispatch } from 'react-redux';
 import { login } from '../../store/slices/authSlice';
 import { Link } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'; // FontAwesomeのインポート
+import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons'; // 必要なアイコンのインポート
 
 const LoginPage = () => {
   const location = useLocation();
@@ -10,6 +12,9 @@ const LoginPage = () => {
 
   const [email, setEmail] = useState(state?.email || ''); // 初期状態を遷移時の状態に設定
   const [password, setPassword] = useState(state?.password || '');
+  const [showPassword, setShowPassword] = useState(false);
+  const [showPasswordConfirmation, setShowPasswordConfirmation] = useState(false);
+
   const dispatch = useDispatch();
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
@@ -62,27 +67,35 @@ const LoginPage = () => {
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
             <label className="block text-gray-700 mb-2">Email:</label>
-            <input 
-              type="email" 
-              value={email} 
-              onChange={(e) => setEmail(e.target.value)} 
-              required 
-              className="w-full p-2 border border-gray-300 rounded bg-gray-50" 
+            <input
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+              className="w-full p-2 border border-gray-300 rounded bg-gray-50"
             />
           </div>
-          <div className="mb-4">
+          <div className="mb-4 relative">
             <label className="block text-gray-700 mb-2">パスワード:</label>
-            <input 
-              type="password" 
-              value={password} 
-              onChange={(e) => setPassword(e.target.value)} 
-              required 
-              className="w-full p-2 border border-gray-300 rounded bg-gray-50" 
-            />
+            <div className="relative">
+              <input
+                type={showPassword ? "text" : "password"}
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+                className="w-full p-2 border border-gray-300 rounded bg-gray-50"
+              />
+              <span
+                onClick={() => setShowPassword(!showPassword)}
+                className="absolute right-3 top-1/2 transform -translate-y-1/2 cursor-pointer opacity-50 hover:opacity-100"
+              >
+                <FontAwesomeIcon icon={showPassword ? faEyeSlash : faEye} />
+              </span>
+            </div>
           </div>
           <div className="flex flex-col space-y-4 items-center">
             <button
-              type="submit" 
+              type="submit"
               className="w-2/4 bg-green-300 hover:bg-emerald-500 text-gray-600 hover:text-white font-bold py-2 px-4 rounded">
               ログイン
             </button>
