@@ -1,14 +1,19 @@
-import React, { useState, FormEvent } from 'react';
+import React, { useEffect, useState, FormEvent } from 'react';
 import { useDispatch } from 'react-redux';
 import { register } from '../../store/slices/registerSlice';
 import { useNavigate } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'; // FontAwesomeのインポート
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons'; // 必要なアイコンのインポート
+import { zxcvbn, zxcvbnOptions } from '@zxcvbn-ts/core'
+import { ZxcvbnResult } from '@zxcvbn-ts/core/src/types'
+import * as zxcvbnCommonPackage from '@zxcvbn-ts/language-common'
+import * as zxcvbnJaPackage from '@zxcvbn-ts/language-ja'
 
 const UserSignupPage: React.FC = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [result, setResult] = useState<ZxcvbnResult | undefined>(undefined)
   const [passwordConfirmation, setPasswordConfirmation] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [showPasswordConfirmation, setShowPasswordConfirmation] = useState(false);
@@ -51,7 +56,49 @@ const UserSignupPage: React.FC = () => {
       setMessage('サーバーエラーが発生しました。管理者に問い合わせてください。');
       setMessageType('error');
     }
-  };    
+  };
+
+  // zxcvbnの設定
+  const options = {
+    translations: zxcvbnJaPackage.translations,
+    graphs: zxcvbnCommonPackage.adjacencyGraphs,
+    dictionary: {
+      ...zxcvbnCommonPackage.dictionary,
+      ...zxcvbnJaPackage.dictionary,
+    },
+  }
+  zxcvbnOptions.setOptions(options)
+
+  useEffect(() => {
+    // パスワードがない場合はzxcvbnの結果をリセットする
+    if (!password) {
+      setResult(undefined);
+      return;
+    }
+    // 入力されたパスワードを用いてzxcvbnの結果を取得、useStateに格納する
+    const newResult = zxcvbn(password);
+    setResult(newResult);
+  }, [password]);
+
+  const getBarColor = (v: number, score: number) => {
+    if (v <= score) {
+      switch (score) {
+        case 0:
+          return 'bg-red-500';
+        case 1:
+          return 'bg-orange-500';
+        case 2:
+          return 'bg-yellow-500';
+        case 3:
+          return 'bg-green-500';
+        case 4:
+          return 'bg-blue-500';
+        default:
+          return 'bg-gray-500';
+      }
+    }
+    return 'bg-gray-300';
+  };
 
   return (
     <div className="flex justify-center items-center min-h-screen bg-gray-100">
@@ -72,7 +119,7 @@ const UserSignupPage: React.FC = () => {
               required
               className="w-full p-2 border border-gray-300 rounded bg-gray-50"
               autoComplete="username"
-              />
+            />
           </div>
           <div className="mb-4">
             <label className="block text-gray-700 mb-2">Email:</label>
@@ -103,6 +150,20 @@ const UserSignupPage: React.FC = () => {
                 <FontAwesomeIcon icon={showPassword ? faEyeSlash : faEye} />
               </span>
             </div>
+            <div className="mt-[20px]">
+              <div className="flex w-full gap-[1%]">
+                {/* 強度を表す5段階のバーを表示 */}
+                {[0, 1, 2, 3, 4].map((v) => (
+                  <div
+                    className={`h-[4px] w-[24%] ${result ? getBarColor(v, result.score) : 'bg-gray-300'}`}
+                    key={v}
+                  />
+                ))}
+              </div>
+              {result && result.score + 1}
+            </div>
+            {/* feedback.warning がある場合は表示 */}
+            {result?.feedback && <div className="text-[#f00]">{result.feedback.warning}</div>}
           </div>
 
           <div className="mb-4 relative">
