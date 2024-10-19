@@ -21,7 +21,6 @@ const LoginPage = () => {
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-
     try {
       const response = await fetch(`${import.meta.env.VITE_APP_API_URL}/api/v1/login`, {
         method: 'POST',
@@ -33,15 +32,16 @@ const LoginPage = () => {
       const data = await response.json();
       if (response.ok) {
         console.log('Login successful:', data);
+        localStorage.setItem('authToken', data.token); // トークンをローカルストレージに保存
         dispatch(login());  // ログイン状態を更新
-        navigate('/placeholder');
+        navigate('/placeholder'); // 仮のトップページに遷移
       } else {
         console.error('Login failed:', data);
       }
     } catch (error) {
       console.error('Error:', error);
     }
-  };
+  };  
 
   const handleGuestLogin = async () => {
     try {
