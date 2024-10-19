@@ -81,6 +81,7 @@ const LoginPage = () => {
               onChange={(e) => setEmail(e.target.value)}
               required
               className="w-full p-2 border border-gray-300 rounded bg-gray-50"
+              autoComplete="username"
             />
           </div>
           <div className="mb-4 relative">
@@ -92,6 +93,7 @@ const LoginPage = () => {
                 onChange={(e) => setPassword(e.target.value)}
                 required
                 className="w-full p-2 border border-gray-300 rounded bg-gray-50"
+                autoComplete="current-password"
               />
               <span
                 onClick={() => setShowPassword(!showPassword)}
