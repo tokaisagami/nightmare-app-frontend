@@ -71,7 +71,8 @@ const UserSignupPage: React.FC = () => {
               onChange={(e) => setName(e.target.value)}
               required
               className="w-full p-2 border border-gray-300 rounded bg-gray-50"
-            />
+              autoComplete="username"
+              />
           </div>
           <div className="mb-4">
             <label className="block text-gray-700 mb-2">Email:</label>
@@ -81,6 +82,7 @@ const UserSignupPage: React.FC = () => {
               onChange={(e) => setEmail(e.target.value)}
               required
               className="w-full p-2 border border-gray-300 rounded bg-gray-50"
+              autoComplete="Email"
             />
           </div>
           <div className="mb-4 relative">
@@ -92,6 +94,7 @@ const UserSignupPage: React.FC = () => {
                 onChange={(e) => setPassword(e.target.value)}
                 required
                 className="w-full p-2 border border-gray-300 rounded bg-gray-50"
+                autoComplete="new-password"
               />
               <span
                 onClick={() => setShowPassword(!showPassword)}
@@ -111,6 +114,7 @@ const UserSignupPage: React.FC = () => {
                 onChange={(e) => setPasswordConfirmation(e.target.value)}
                 required
                 className="w-full p-2 border border-gray-300 rounded bg-gray-50"
+                autoComplete="new-password"
               />
               <span
                 onClick={() => setShowPasswordConfirmation(!showPasswordConfirmation)}
