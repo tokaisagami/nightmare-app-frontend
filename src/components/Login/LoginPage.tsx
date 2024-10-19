@@ -1,7 +1,7 @@
 import React, { useState, FormEvent } from 'react';
 import { useDispatch } from 'react-redux';
 import { login } from '../../store/slices/authSlice';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'; // FontAwesomeのインポート
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons'; // 必要なアイコンのインポート
@@ -17,12 +17,13 @@ const LoginPage = () => {
   const [messageType, setMessageType] = useState(state?.messageType || null);
 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     try {
-      const response = await fetch(`${import.meta.env.REACT_APP_API_URL}/api/v1/login`, {
+      const response = await fetch(`${import.meta.env.VITE_APP_API_URL}/api/v1/login`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -33,6 +34,7 @@ const LoginPage = () => {
       if (response.ok) {
         console.log('Login successful:', data);
         dispatch(login());  // ログイン状態を更新
+        navigate('/placeholder');
       } else {
         console.error('Login failed:', data);
       }
