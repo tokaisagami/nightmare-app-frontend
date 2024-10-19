@@ -22,27 +22,36 @@ const UserSignupPage: React.FC = () => {
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     try {
-      const response = await fetch(`${import.meta.env.VITE_APP_API_URL}/api/v1/signup`, {
+      const response = await fetch(`${import.meta.env.VITE_APP_API_URL}/api/v1/users`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ name, email, password, password_confirmation: passwordConfirmation }),
+        body: JSON.stringify({
+          user: { // user パラメータをネストする
+            name,
+            email,
+            password,
+            password_confirmation: passwordConfirmation
+          }
+        }),
       });
-      const data = await response.json(); 
+      const data = await response.json();
       if (response.ok) {
         console.log('Signup successful:', data);
-        dispatch(register()); // 登録状態を更新
-        navigate('/login', { state: { email, password, message: 'ユーザー登録が成功しました！', messageType: 'success' } }); // メッセージを渡す
+        dispatch(register());
+        navigate('/login', { state: { email, password, message: 'ユーザー登録が成功しました！', messageType: 'success' } });
       } else {
         console.error('Signup failed:', data);
         setMessage('ユーザー登録に失敗しました。もう一度お試しください。');
-        setMessageType('error'); // エラーメッセージを設定して、遷移せずに留まる
+        setMessageType('error');
       }
     } catch (error) {
       console.error('Error:', error);
+      setMessage('サーバーエラーが発生しました。管理者に問い合わせてください。');
+      setMessageType('error');
     }
-  };  
+  };    
 
   return (
     <div className="flex justify-center items-center min-h-screen bg-gray-100">
