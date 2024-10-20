@@ -2,18 +2,31 @@ import React, { useEffect, useState } from 'react';
 
 const PlaceholderPage = () => {
   const [message, setMessage] = useState('');
-  const API_URL = process.env.REACT_APP_API_URL;
+  const API_URL = import.meta.env.VITE_APP_API_URL;
 
   useEffect(() => {
-    fetch(`${API_URL}/api/v1/placeholders`) 
-      .then(response => {
+    const fetchData = async () => {
+      const token = localStorage.getItem('authToken'); // ローカルストレージからトークンを取得
+      console.log('Token:', token);
+      try {
+        const response = await fetch(`${API_URL}/api/v1/placeholders`, {
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}` // 認証トークンをヘッダーに追加
+          }
+        });
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }
-        return response.json();
-      })
-      .then(data => setMessage(data.message))
-      .catch(error => console.error('Fetch error:', error));
+        const data = await response.json();
+        setMessage(data.message);
+        console.log('Fetched data:', data);
+      } catch (error) {
+        console.error('Fetch error:', error);
+      }
+    };
+
+    fetchData();
   }, [API_URL]);
 
   return (
