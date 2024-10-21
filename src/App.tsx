@@ -7,6 +7,13 @@ import Header from './components/Header/Header';
 import UserSignupPage from './components/Signup/UserSignupPage';
 import { login } from './store/slices/authSlice';
 
+const routes = [
+  { path: '/placeholder', element: <PlaceholderPage /> },
+  { path: '/login', element: <LoginPage /> },
+  { path: '/signup', element: <UserSignupPage /> },
+  // 他のルートもここに追加できる
+];
+
 function App() {
   const dispatch = useDispatch();
 
@@ -21,9 +28,9 @@ function App() {
     <Router>
       <Header />
       <Routes>
-        <Route path="/placeholder" element={<PlaceholderPage />} />
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/signup" element={<UserSignupPage />} />
+        {routes.map((route, index) => (
+          <Route key={index} path={route.path} element={route.element} />
+        ))}
       </Routes>
     </Router>
   );
