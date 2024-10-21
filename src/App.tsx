@@ -5,13 +5,14 @@ import PlaceholderPage from './PlaceholderPage';
 import LoginPage from './components/Login/LoginPage';
 import Header from './components/Header/Header';
 import UserSignupPage from './components/Signup/UserSignupPage';
+import MainPage from './components/MainPage/MainPage';
 import { login } from './store/slices/authSlice';
 
 const routes = [
   { path: '/placeholder', element: <PlaceholderPage /> },
   { path: '/login', element: <LoginPage /> },
   { path: '/signup', element: <UserSignupPage /> },
-  // 他のルートもここに追加できる
+  { path: '/mainPage', element: <MainPage /> },
 ];
 
 function App() {
