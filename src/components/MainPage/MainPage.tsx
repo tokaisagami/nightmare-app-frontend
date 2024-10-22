@@ -1,58 +1,61 @@
 import React, { useEffect, useState } from 'react';
 import PostCard from './PostCard/PostCard';
 
-interface Post {
-  title: string;
-  content: string;
+interface Nightmare {
+  description: string;
+  modified_description: string;
   author: string;
 }
 
 const MainPage: React.FC = () => {
-  const [posts, setPosts] = useState<Post[]>([]);
+  const [nightmares, setNightmares] = useState<Nightmare[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    const fetchPosts = async () => {
+    const fetchNightmares = async () => {
       const token = localStorage.getItem('authToken'); // ローカルストレージからトークンを取得
       console.log('Token:', token);
       try {
-        const response = await fetch(`${import.meta.env.VITE_APP_API_URL}/api/v1/posts`, {
+        const response = await fetch(`${import.meta.env.VITE_APP_API_URL}/api/v1/nightmares`, {
           headers: {
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${token}` // 認証トークンをヘッダーに追加
           }
         });
         if (!response.ok) {
-          throw new Error('Failed to fetch posts');
+          throw new Error('Failed to fetch nightmares');
         }
         const data = await response.json();
-        setPosts(data);
+        setNightmares(data);
       } catch (error: any) {
         setError(error.message);
       } finally {
         setLoading(false);
       }
     };
-    fetchPosts();
+    fetchNightmares();
   }, []);  
 
   if (loading) {
     return <div>Loading...</div>;
   }
-
   if (error) {
     return <div>Error: {error}</div>;
   }
-
   return (
     <div className="main-page">
       <header className="main-header">
         <h1>Welcome to the Main Page</h1>
       </header>
       <main className="main-content">
-        {posts.map((post, index) => (
-          <PostCard key={index} title={post.title} content={post.content} author={post.author} />
+        {nightmares.map((nightmare, index) => (
+          <PostCard
+            key={index}
+            title={nightmare.description}
+            content={nightmare.modified_description}
+            author={nightmare.author}
+          />
         ))}
       </main>
       <footer className="main-footer">
