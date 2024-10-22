@@ -14,8 +14,15 @@ const MainPage: React.FC = () => {
 
   useEffect(() => {
     const fetchPosts = async () => {
+      const token = localStorage.getItem('authToken'); // ローカルストレージからトークンを取得
+      console.log('Token:', token);
       try {
-        const response = await fetch(`${import.meta.env.VITE_APP_API_URL}/api/v1/posts`);
+        const response = await fetch(`${import.meta.env.VITE_APP_API_URL}/api/v1/posts`, {
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}` // 認証トークンをヘッダーに追加
+          }
+        });
         if (!response.ok) {
           throw new Error('Failed to fetch posts');
         }
@@ -27,9 +34,8 @@ const MainPage: React.FC = () => {
         setLoading(false);
       }
     };
-
     fetchPosts();
-  }, []);
+  }, []);  
 
   if (loading) {
     return <div>Loading...</div>;
