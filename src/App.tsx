@@ -6,12 +6,14 @@ import LoginPage from './components/Login/LoginPage';
 import Header from './components/Header/Header';
 import UserSignupPage from './components/Signup/UserSignupPage';
 import MainPage from './components/MainPage/MainPage';
+import NightmareDetail from './components/MainPage/NightmareDetail';
 import { login } from './store/slices/authSlice';
 
 const routes = [
   { path: '/placeholder', element: <PlaceholderPage /> },
   { path: '/login', element: <LoginPage /> },
   { path: '/signup', element: <UserSignupPage /> },
+  { path: '/nightmares/:id', element: <NightmareDetail /> },
   { path: '/mainPage', element: <MainPage /> },
 ];
 
@@ -27,12 +29,14 @@ function App() {
 
   return (
     <Router>
-      <Header />
-      <Routes>
-        {routes.map((route, index) => (
-          <Route key={index} path={route.path} element={route.element} />
-        ))}
-      </Routes>
+      <div className="bg-gray-100 min-h-screen">
+        <Header />
+        <Routes>
+          {routes.map((route, index) => (
+            <Route key={index} path={route.path} element={route.element} />
+          ))}
+        </Routes>
+      </div>
     </Router>
   );
 }
