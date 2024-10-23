@@ -61,12 +61,12 @@ const MainPage: React.FC = () => {
         <header className="main-header text-center mb-6">
           <h1 className="text-2xl font-bold">救済された悪夢たち</h1>
         </header>
-        <main className="flex flex-wrap justify-between px-[20px] py-[10px]"> {/* bg-blue-100を削除 */}
+        <main className="grid grid-cols-3 gap-4"> {/* 3列に設定 */}
           {currentNightmares.map((nightmare) => (
             <Link key={nightmare.id} to={`/nightmares/${nightmare.id}`}>
               <PostCard
-                title={nightmare.description.length > 50 ? nightmare.description.substring(0, 50) + '...' : nightmare.description}
-                content={nightmare.modified_description}
+                description={nightmare.description.length > 50 ? nightmare.description.substring(0, 50) + '...' : nightmare.description}
+                modified_description={nightmare.modified_description}
                 author={nightmare.author}
               />
             </Link>
@@ -85,7 +85,7 @@ const MainPage: React.FC = () => {
         </nav>
       </div>
     </div>
-  );    
+  );
 };
 
 export default MainPage;
