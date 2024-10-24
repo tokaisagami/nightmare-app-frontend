@@ -34,7 +34,7 @@ const LoginPage = () => {
         console.log('Login successful:', data);
         localStorage.setItem('authToken', data.token); // トークンをローカルストレージに保存
         dispatch(login());  // ログイン状態を更新
-        navigate('/placeholder'); // 仮のトップページに遷移
+        navigate('/mainPage'); // 仮のトップページに遷移
       } else {
         console.error('Login failed:', data);
       }
