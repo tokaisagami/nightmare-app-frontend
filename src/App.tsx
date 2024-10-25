@@ -7,6 +7,7 @@ import Header from './components/Header/Header';
 import UserSignupPage from './components/Signup/UserSignupPage';
 import MainPage from './components/MainPage/MainPage';
 import NightmareDetail from './components/MainPage/NightmareDetail';
+import InputNightmare from './components/MainPage/InputNightmare';
 import { login } from './store/slices/authSlice';
 
 const routes = [
@@ -14,6 +15,7 @@ const routes = [
   { path: '/login', element: <LoginPage /> },
   { path: '/signup', element: <UserSignupPage /> },
   { path: '/nightmares/:id', element: <NightmareDetail /> },
+  { path: '/input-nightmare', element: <InputNightmare /> },
   { path: '/mainPage', element: <MainPage /> },
 ];
 
