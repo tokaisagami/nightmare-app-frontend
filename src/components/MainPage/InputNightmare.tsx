@@ -3,18 +3,28 @@ import { useNavigate } from 'react-router-dom';
 
 const InputNightmare: React.FC = () => {
   const [description, setDescription] = useState('');
-  const [endingType, setEndingType] = useState('0');
+  const [ending_category, setEnding_category] = useState('0');
   const navigate = useNavigate();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    const token = localStorage.getItem('authToken');
+    console.log('Token:', token);
+    
     const response = await fetch(`${import.meta.env.VITE_APP_API_URL}/api/v1/nightmares/modify`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
       },
-      body: JSON.stringify({ description, ending_type: endingType }),
+      body: JSON.stringify({ description, ending_type: ending_category }),
     });
+    
+    if (!response.ok) {
+      console.error('Error:', response.statusText);
+      return;
+    }
+
     const data = await response.json();
     console.log(data);
     // 改変結果を表示する画面に遷移するなどの処理
@@ -39,8 +49,8 @@ const InputNightmare: React.FC = () => {
               <input
                 type="radio"
                 value="0"
-                checked={endingType === '0'}
-                onChange={(e) => setEndingType(e.target.value)}
+                checked={ending_category === '0'}
+                onChange={(e) => setEnding_category(e.target.value)}
               />
               ハッピーエンド
             </label>
@@ -48,8 +58,8 @@ const InputNightmare: React.FC = () => {
               <input
                 type="radio"
                 value="1"
-                checked={endingType === '1'}
-                onChange={(e) => setEndingType(e.target.value)}
+                checked={ending_category === '1'}
+                onChange={(e) => setEnding_category(e.target.value)}
               />
               予想外の結末
             </label>
