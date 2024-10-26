@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import PostCard from './PostCard/PostCard';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 interface Nightmare {
   id: number;
@@ -10,6 +10,7 @@ interface Nightmare {
 }
 
 const MainPage: React.FC = () => {
+  const navigate = useNavigate();
   const [nightmares, setNightmares] = useState<Nightmare[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -57,6 +58,12 @@ const MainPage: React.FC = () => {
   }
   return (
     <div className="flex flex-col justify-center items-center mt-8"> {/* 上にマージンを追加 */}
+      <button
+        onClick={() => navigate('/input-nightmare')}
+        className="bg-blue-500 text-white px-4 py-2 rounded mb-4"
+      >
+        悪夢を入力する
+      </button>      
       <div className="bg-pink-100 shadow-lg p-6 rounded-lg w-[95%] mx-auto border border-gray-300"> {/* 大きな枠を薄いピンクに設定 */}
         <header className="main-header text-center mb-6">
           <h1 className="text-2xl font-bold">救済された悪夢たち</h1>
