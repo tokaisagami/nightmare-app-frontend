@@ -8,15 +8,17 @@ import UserSignupPage from './components/Signup/UserSignupPage';
 import MainPage from './components/MainPage/MainPage';
 import NightmareDetail from './components/MainPage/NightmareDetail';
 import InputNightmare from './components/MainPage/InputNightmare';
+import DisplayNightmare from './components/MainPage/DisplayNightmare';
 import { login } from './store/slices/authSlice';
 
 const routes = [
   { path: '/placeholder', element: <PlaceholderPage /> },
   { path: '/login', element: <LoginPage /> },
   { path: '/signup', element: <UserSignupPage /> },
+  { path: '/mainPage', element: <MainPage /> },
   { path: '/nightmares/:id', element: <NightmareDetail /> },
   { path: '/input-nightmare', element: <InputNightmare /> },
-  { path: '/mainPage', element: <MainPage /> },
+  { path: '/modified-nightmare', element: <DisplayNightmare /> },
 ];
 
 function App() {
