@@ -17,7 +17,7 @@ const InputNightmare: React.FC = () => {
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${token}`
       },
-      body: JSON.stringify({ description, ending_type: ending_category }),
+      body: JSON.stringify({ description, ending_category: ending_category }),
     });
     
     if (!response.ok) {
