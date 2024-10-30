@@ -46,23 +46,25 @@ const DisplayNightmare: React.FC = () => {
       </div>
 
       {showModal && (
-        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
-          <div className="bg-white p-6 rounded shadow-lg text-center">
-            <p>悪夢内容を投稿しました！</p>
-            <button onClick={() => setShowModal(false)} className="bg-blue-500 text-white px-4 py-2 rounded mt-4">
-              閉じる
-            </button>
-            <a
-              href={tweetUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="bg-blue-500 text-white px-4 py-2 rounded mt-4 inline-block"
-            >
-              X（元Twitter）で共有する
-            </a>
-          </div>
-        </div>
-      )}
+  <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+    <div className="bg-white p-6 rounded shadow-lg text-center">
+      <p>悪夢内容を投稿しました！</p>
+      <div className="flex justify-around mt-4 space-x-4"> {/* ボタンを囲むdivを追加 */}
+        <button onClick={() => setShowModal(false)} className="bg-blue-500 text-white px-4 py-2 rounded flex">
+          閉じる
+        </button>
+        <a
+          href={tweetUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="bg-blue-500 text-white px-4 py-2 rounded flex"
+        >
+          Xで共有する
+        </a>
+      </div>
+    </div>
+  </div>
+)}
 
       <div className="mt-4 text-center">
         <Link to="/mainPage" className="text-blue-500 hover:text-blue-700">メインページへ</Link>
