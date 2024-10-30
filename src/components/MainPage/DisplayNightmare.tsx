@@ -5,6 +5,7 @@ const DisplayNightmare: React.FC = () => {
   const location = useLocation();
   const { modified_description, description, ending_category } = location.state;
   const [showModal, setShowModal] = useState(false);
+  const [nightmareId, setNightmareId] = useState<number | null>(null); // 追加
 
   const handlePost = async () => {
     const token = localStorage.getItem('authToken');
@@ -21,14 +22,18 @@ const DisplayNightmare: React.FC = () => {
         published: true
       })
     });
-  
+
     if (!response.ok) {
       console.error('Error:', response.statusText);
       return;
     }
-  
+
+    const data = await response.json();
+    setNightmareId(data.id); // 投稿したナイトメアのIDを保存
     setShowModal(true);
-  };  
+  };
+
+  const tweetUrl = `https://twitter.com/intent/tweet?text=改変された悪夢を共有します！&url=${import.meta.env.VITE_APP_DOMAIN_NAME}/nightmares/${nightmareId}`;
 
   return (
     <div className="flex flex-col justify-center items-center mt-8">
@@ -47,9 +52,18 @@ const DisplayNightmare: React.FC = () => {
             <button onClick={() => setShowModal(false)} className="bg-blue-500 text-white px-4 py-2 rounded mt-4">
               閉じる
             </button>
+            <a
+              href={tweetUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-blue-500 text-white px-4 py-2 rounded mt-4 inline-block"
+            >
+              X（元Twitter）で共有する
+            </a>
           </div>
         </div>
       )}
+
       <div className="mt-4 text-center">
         <Link to="/mainPage" className="text-blue-500 hover:text-blue-700">メインページへ</Link>
       </div>
