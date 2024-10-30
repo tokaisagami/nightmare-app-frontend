@@ -52,7 +52,7 @@ const NightmareDetail: React.FC = () => {
   return (
     <div className="nightmare-detail flex flex-col justify-center items-center mt-8">
       <div className="bg-white shadow-lg rounded-lg p-6 max-w-2xl w-full">
-        <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold text-center mb-4">{nightmare.author}さんの悪夢</h1>
+        <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold text-center mb-4 font-zenKurenaido">{nightmare.author}さんの悪夢</h1>
         <h3 className="text-lg font-semibold mb-2">悪夢内容：</h3>
         <p className="border-l-4 border-rose-400 pl-4 text-gray-700 text-base md:text-lg lg:text-xl mb-2 break-words">{nightmare.description}</p>
         <h3 className="text-lg font-semibold mb-2">改変された結末：</h3>
