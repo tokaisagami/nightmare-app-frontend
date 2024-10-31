@@ -9,9 +9,11 @@ import MainPage from './components/MainPage/MainPage';
 import NightmareDetail from './components/MainPage/NightmareDetail';
 import InputNightmare from './components/MainPage/InputNightmare';
 import DisplayNightmare from './components/MainPage/DisplayNightmare';
+import HomePage from './components/HomePage/HomePage'; // 新規トップページをインポート
 import { login } from './store/slices/authSlice';
 
 const routes = [
+  { path: '/', element: <HomePage /> }, // トップページを追加
   { path: '/placeholder', element: <PlaceholderPage /> },
   { path: '/login', element: <LoginPage /> },
   { path: '/signup', element: <UserSignupPage /> },
@@ -23,7 +25,6 @@ const routes = [
 
 function App() {
   const dispatch = useDispatch();
-
   useEffect(() => {
     const token = localStorage.getItem('authToken');
     if (token) {
