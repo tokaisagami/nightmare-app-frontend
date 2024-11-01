@@ -14,7 +14,6 @@ import { login } from './store/slices/authSlice';
 
 const routes = [
   { path: '/', element: <HomePage /> }, // トップページを追加
-  { path: '/placeholder', element: <PlaceholderPage /> },
   { path: '/login', element: <LoginPage /> },
   { path: '/signup', element: <UserSignupPage /> },
   { path: '/mainPage', element: <MainPage /> },
