@@ -10,6 +10,7 @@ const config = {
         zenKurenaido: ['Zen Kurenaido', 'sans-serif'],
         kleeOne: ['Klee One', 'sans-serif'],
         Shizuru: ['Shizuru', 'sans-serif'],
+        KaiseiOpti: ['Kaisei Opti', 'sans-serif'],
       },
     },
   },
