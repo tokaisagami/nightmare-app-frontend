@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import PlaceholderPage from './PlaceholderPage';
 import LoginPage from './components/Login/LoginPage';
 import Header from './components/Header/Header';
 import UserSignupPage from './components/Signup/UserSignupPage';
@@ -33,7 +32,7 @@ function App() {
 
   return (
     <Router>
-      <div className="bg-gray-100 min-h-screen">
+      <div className="min-h-screen">
         <Header />
         <Routes>
           {routes.map((route, index) => (
