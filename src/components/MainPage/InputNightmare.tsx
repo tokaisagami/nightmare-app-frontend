@@ -10,16 +10,16 @@ const InputNightmare: React.FC = () => {
     e.preventDefault();
     const token = localStorage.getItem('authToken');
     console.log('Token:', token);
-    
+
     const response = await fetch(`${import.meta.env.VITE_APP_API_URL}/api/v1/nightmares/modify`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${token}`
       },
-      body: JSON.stringify({ description, ending_type: ending_category }),
+      body: JSON.stringify({ description, ending_category: ending_category }),
     });
-    
+
     if (!response.ok) {
       console.error('Error:', response.statusText);
       return;
@@ -27,7 +27,13 @@ const InputNightmare: React.FC = () => {
 
     const data = await response.json();
     console.log(data);
-    // 改変結果を表示する画面に遷移するなどの処理
+
+    // 改変結果を表示する画面に遷移する処理を追加
+    navigate('/modified-nightmare', { state: { 
+      modified_description: data.modified_description, 
+      description: description,
+      ending_category: ending_category 
+    } });    
   };
 
   return (
