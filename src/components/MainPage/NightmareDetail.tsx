@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useParams, Link, useNavigate } from 'react-router-dom'; // useNavigateを追加
+import { useParams, Link, useNavigate } from 'react-router-dom';
 
 interface Nightmare {
   id: number;
@@ -13,11 +13,15 @@ const NightmareDetail: React.FC = () => {
   const [nightmare, setNightmare] = useState<Nightmare | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const navigate = useNavigate(); // navigateを追加
+  const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false); // 認証状態を管理
 
   useEffect(() => {
+    const token = localStorage.getItem('authToken');
+    if (token) {
+      setIsAuthenticated(true); // トークンが存在する場合は認証済みとする
+    }
+
     const fetchNightmare = async () => {
-      const token = localStorage.getItem('authToken');
       const headers: HeadersInit = {
         'Content-Type': 'application/json',
       };
@@ -43,15 +47,6 @@ const NightmareDetail: React.FC = () => {
     fetchNightmare();
   }, [id]);
 
-  const handleRedirect = () => {
-    const token = localStorage.getItem('authToken');
-    if (token) {
-      navigate('/mainPage'); // ログインしている場合はメインページへ
-    } else {
-      navigate('/'); // ログインしていない場合はHOMEページへ
-    }
-  };
-
   if (loading) {
     return <div>Loading...</div>;
   }
@@ -71,9 +66,15 @@ const NightmareDetail: React.FC = () => {
         <h3 className="text-lg font-semibold mb-2">改変された結末：</h3>
         <p className="border-l-4 border-indigo-400 pl-4 text-gray-700 text-base md:text-lg lg:text-xl mb-2 break-words">{nightmare.modified_description}</p>
       </div>
-      <button onClick={handleRedirect} className="block text-center mt-6 text-blue-600 hover:text-blue-400 text-lg md:text-xl">
-        一覧へ戻る
-      </button>
+      {isAuthenticated ? (
+        <Link to="/mainPage" className="block text-center mt-6 text-blue-600 hover:text-blue-400 text-lg md:text-xl">
+          一覧へ戻る
+        </Link>
+      ) : (
+        <Link to="/" className="block text-center mt-6 text-blue-600 hover:text-blue-400 text-lg md:text-xl">
+          新規登録へ
+        </Link>
+      )}
     </div>
   );
 };
