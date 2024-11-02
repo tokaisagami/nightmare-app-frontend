@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 
 const DisplayNightmare: React.FC = () => {
@@ -6,6 +6,13 @@ const DisplayNightmare: React.FC = () => {
   const { modified_description, description, ending_category } = location.state;
   const [showModal, setShowModal] = useState(false);
   const [nightmareId, setNightmareId] = useState<number | null>(null); // 追加
+  const [tweetUrl, setTweetUrl] = useState<string>(''); // 追加
+
+  useEffect(() => {
+    if (nightmareId !== null) {
+      setTweetUrl(`https://twitter.com/intent/tweet?text=改変された悪夢を共有します！&url=${import.meta.env.VITE_APP_DOMAIN_NAME}/nightmares/${nightmareId}`);
+    }
+  }, [nightmareId]); // nightmareIdが変更された時にtweetUrlを更新
 
   const handlePost = async () => {
     const token = localStorage.getItem('authToken');
@@ -32,8 +39,6 @@ const DisplayNightmare: React.FC = () => {
     setNightmareId(data.id); // 投稿したナイトメアのIDを保存
     setShowModal(true);
   };
-
-  const tweetUrl = `https://twitter.com/intent/tweet?text=改変された悪夢を共有します！&url=${import.meta.env.VITE_APP_DOMAIN_NAME}/nightmares/${nightmareId}`;
 
   console.log(tweetUrl);
 
