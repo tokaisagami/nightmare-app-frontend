@@ -35,6 +35,8 @@ const DisplayNightmare: React.FC = () => {
 
   const tweetUrl = `https://twitter.com/intent/tweet?text=改変された悪夢を共有します！&url=${import.meta.env.VITE_APP_DOMAIN_NAME}/nightmares/${nightmareId}`;
 
+  console.log(tweetUrl);
+
   return (
     <div className="flex flex-col justify-center items-center mt-8">
       <div className="bg-green-100 shadow-lg p-6 rounded-lg w-[95%] mx-auto border border-gray-300">
@@ -46,25 +48,25 @@ const DisplayNightmare: React.FC = () => {
       </div>
 
       {showModal && (
-  <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
-    <div className="bg-white p-6 rounded shadow-lg text-center">
-      <p>悪夢内容を投稿しました！</p>
-      <div className="flex justify-around mt-4 space-x-4"> {/* ボタンを囲むdivを追加 */}
-        <button onClick={() => setShowModal(false)} className="bg-blue-500 text-white px-4 py-2 rounded flex">
-          閉じる
-        </button>
-        <a
-          href={tweetUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="bg-blue-500 text-white px-4 py-2 rounded flex"
-        >
-          Xで共有する
-        </a>
-      </div>
-    </div>
-  </div>
-)}
+        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+          <div className="bg-white p-6 rounded shadow-lg text-center">
+            <p>悪夢内容を投稿しました！</p>
+            <div className="flex justify-around mt-4 space-x-4"> {/* ボタンを囲むdivを追加 */}
+              <button onClick={() => setShowModal(false)} className="bg-blue-500 text-white px-4 py-2 rounded flex">
+                閉じる
+              </button>
+              <a
+                href={tweetUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-blue-500 text-white px-4 py-2 rounded flex"
+              >
+                Xで共有する
+              </a>
+            </div>
+          </div>
+        </div>
+      )}
 
       <div className="mt-4 text-center">
         <Link to="/mainPage" className="text-blue-500 hover:text-blue-700">メインページへ</Link>
