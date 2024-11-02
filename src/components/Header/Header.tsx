@@ -29,7 +29,7 @@ const Header = () => {
         <nav>
           <ul className="flex space-x-4">
             <li><a className="hover:text-gray-400" href="/login">ログイン</a></li>
-            <li><a className="hover:text-gray-400" href="/signup">ゲストログイン</a></li>
+            {/* <li><a className="hover:text-gray-400" href="/signup">ゲストログイン</a></li> */}
           </ul>
         </nav>
       )}

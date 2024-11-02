@@ -108,9 +108,9 @@ const LoginPage = () => {
               className="w-2/4 bg-green-300 hover:bg-emerald-500 text-gray-600 hover:text-white font-bold py-2 px-4 rounded">
               ログイン
             </button>
-            <button type="button" onClick={handleGuestLogin} className="w-2/4 bg-amber-200 hover:bg-yellow-400 text-gray-600 font-bold py-2 px-4 rounded">
+            {/* <button type="button" onClick={handleGuestLogin} className="w-2/4 bg-amber-200 hover:bg-yellow-400 text-gray-600 font-bold py-2 px-4 rounded">
               ゲストログイン
-            </button>
+            </button> */}
           </div>
         </form>
         <div className="mt-4 text-center">
