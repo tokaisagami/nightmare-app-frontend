@@ -32,35 +32,37 @@ const LoginPage = () => {
       if (response.ok) {
         console.log('Login successful:', data);
         localStorage.setItem('authToken', data.token); // トークンをローカルストレージに保存
-        dispatch(login());  // ログイン状態を更新
+        const user = { name: data.user_name, email: data.user_email }; // レスポンスからユーザー情報を取得
+        console.log(user);
+        dispatch(login(user));  // ユーザー情報を渡してログイン状態を更新
         navigate('/mainPage'); // 仮のトップページに遷移
       } else {
         console.error('Login failed:', data);
-      }
+      }            
     } catch (error) {
       console.error('Error:', error);
     }
   };  
 
-  const handleGuestLogin = async () => {
-    try {
-      const response = await fetch(`${import.meta.env.VITE_APP_API_URL}/api/v1/guest_login`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      });
-      const data = await response.json();
-      if (response.ok) {
-        console.log('Guest login successful:', data);
-        dispatch(login());  // ログイン状態を更新
-      } else {
-        console.error('Guest login failed:', data);
-      }
-    } catch (error) {
-      console.error('Error:', error);
-    }
-  };
+  // const handleGuestLogin = async () => {
+  //   try {
+  //     const response = await fetch(`${import.meta.env.VITE_APP_API_URL}/api/v1/guest_login`, {
+  //       method: 'POST',
+  //       headers: {
+  //         'Content-Type': 'application/json',
+  //       },
+  //     });
+  //     const data = await response.json();
+  //     if (response.ok) {
+  //       console.log('Guest login successful:', data);
+  //       dispatch(login());  // ログイン状態を更新
+  //     } else {
+  //       console.error('Guest login failed:', data);
+  //     }
+  //   } catch (error) {
+  //     console.error('Error:', error);
+  //   }
+  // };
 
   return (
     <div className="flex justify-center items-center min-h-screen bg-gray-100">
