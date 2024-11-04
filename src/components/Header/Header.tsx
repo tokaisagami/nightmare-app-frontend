@@ -21,8 +21,12 @@ const Header = () => {
       {isLoggedIn ? (
         <nav>
           <ul className="flex space-x-4">
-            {/* <li><a className="hover:text-gray-400" href="/dashboard">ダッシュボード</a></li> */}
-            <li><button className="hover:text-gray-400" onClick={handleLogout}>ログアウト</button></li>
+            <li>
+              <a className="hover:text-gray-400" href="/mypage">マイページ</a>
+            </li>
+            <li>
+              <button className="hover:text-gray-400" onClick={handleLogout}>ログアウト</button>
+            </li>
           </ul>
         </nav>
       ) : (
