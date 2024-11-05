@@ -32,17 +32,17 @@ const LoginPage = () => {
       if (response.ok) {
         console.log('Login successful:', data);
         localStorage.setItem('authToken', data.token); // トークンをローカルストレージに保存
-        const user = { name: data.user_name, email: data.user_email }; // レスポンスからユーザー情報を取得
+        const user = { id: data.user_id, name: data.user_name, email: data.user_email }; // idを追加
         console.log(user);
         dispatch(login(user));  // ユーザー情報を渡してログイン状態を更新
         navigate('/mainPage'); // 仮のトップページに遷移
       } else {
         console.error('Login failed:', data);
-      }            
+      }
     } catch (error) {
       console.error('Error:', error);
     }
-  };  
+  };    
 
   // const handleGuestLogin = async () => {
   //   try {

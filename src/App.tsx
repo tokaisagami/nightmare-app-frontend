@@ -45,11 +45,11 @@ function App() {
       })
         .then(response => response.json())
         .then(data => {
-          const user = { name: data.name, email: data.email };
+          const user = { id: userId, name: data.name, email: data.email }; // idを追加
           console.log(user); // ここでユーザー情報を確認
           dispatch(login(user)); // ユーザー情報を渡してログイン状態を更新
         })
-        .catch(error => console.error('Error fetching user data:', error));
+        .catch(error => console.error('Error fetching user data:', error));      
     }
   }, [dispatch]);
     
