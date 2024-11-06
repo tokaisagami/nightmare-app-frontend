@@ -1,18 +1,19 @@
 import React, { useState, useEffect } from 'react';
+import { Helmet, HelmetProvider } from 'react-helmet-async'; // react-helmet-asyncを使用
 import { Link, useLocation } from 'react-router-dom';
 
 const DisplayNightmare: React.FC = () => {
   const location = useLocation();
   const { modified_description, description, ending_category } = location.state;
   const [showModal, setShowModal] = useState(false);
-  const [nightmareId, setNightmareId] = useState<number | null>(null); // 追加
-  const [tweetUrl, setTweetUrl] = useState<string>(''); // 追加
+  const [nightmareId, setNightmareId] = useState<number | null>(null);
+  const [tweetUrl, setTweetUrl] = useState<string>('');
 
   useEffect(() => {
     if (nightmareId !== null) {
       setTweetUrl(`https://twitter.com/intent/tweet?text=改変された悪夢を共有します！&url=${import.meta.env.VITE_APP_DOMAIN_NAME}/nightmares/${nightmareId}`);
     }
-  }, [nightmareId]); // nightmareIdが変更された時にtweetUrlを更新
+  }, [nightmareId]);
 
   const handlePost = async () => {
     const token = localStorage.getItem('authToken');
@@ -25,7 +26,7 @@ const DisplayNightmare: React.FC = () => {
       body: JSON.stringify({
         description: description,
         modified_description: modified_description,
-        ending_category: parseInt(ending_category, 10), // 文字列から整数に変換
+        ending_category: parseInt(ending_category, 10),
         published: true
       })
     });
@@ -36,47 +37,57 @@ const DisplayNightmare: React.FC = () => {
     }
 
     const data = await response.json();
-    setNightmareId(data.id); // 投稿したナイトメアのIDを保存
+    setNightmareId(data.id);
     setShowModal(true);
   };
 
   console.log(tweetUrl);
 
   return (
-    <div className="flex flex-col justify-center items-center mt-8">
-      <div className="bg-green-100 shadow-lg p-6 rounded-lg w-[95%] mx-auto border border-gray-300">
-        <h1 className="text-2xl font-bold mb-4">改変された悪夢内容</h1>
-        <p className="whitespace-pre-wrap">{modified_description}</p>
-        <button onClick={handlePost} className="bg-blue-500 text-white px-4 py-2 rounded mt-4">
-          投稿する
-        </button>
-      </div>
+    <HelmetProvider>
+      <div className="flex flex-col justify-center items-center mt-8">
+        <Helmet>
+          <meta property="og:title" content="Nightmare App - Conquer Your Nightmares, Embrace a Brighter Day!" />
+          <meta property="og:description" content="悪夢を記録し、その内容を解決することでスッキリとした一日を過ごせることを目的としたアプリ。" />
+          <meta property="og:image" content={`${import.meta.env.VITE_APP_DOMAIN_NAME}/images/nightmare-app_OGP.png`} />
+          <meta property="og:url" content={`${import.meta.env.VITE_APP_DOMAIN_NAME}/nightmares/${nightmareId}`} />
+          <meta property="og:type" content="website" />
+          <meta property="og:site_name" content="Nightmare App" />
+        </Helmet>
+        <div className="bg-green-100 shadow-lg p-6 rounded-lg w-[95%] mx-auto border border-gray-300">
+          <h1 className="text-2xl font-bold mb-4">改変された悪夢内容</h1>
+          <p className="whitespace-pre-wrap">{modified_description}</p>
+          <button onClick={handlePost} className="bg-blue-500 text-white px-4 py-2 rounded mt-4">
+            投稿する
+          </button>
+        </div>
 
-      {showModal && (
-        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
-          <div className="bg-white p-6 rounded shadow-lg text-center">
-            <p>悪夢内容を投稿しました！</p>
-            <div className="flex justify-around mt-4 space-x-4"> {/* ボタンを囲むdivを追加 */}
-              <button onClick={() => setShowModal(false)} className="bg-blue-500 text-white px-4 py-2 rounded flex">
-                閉じる
-              </button>
-              <a
-                href={tweetUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="bg-blue-500 text-white px-4 py-2 rounded flex"
-              >
-                Xで共有する
-              </a>
+        {showModal && (
+          <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+            <div className="bg-white p-6 rounded shadow-lg text-center">
+              <p>悪夢内容を投稿しました！</p>
+              <div className="flex justify-around mt-4 space-x-4">
+                <button onClick={() => setShowModal(false)} className="bg-blue-500 text-white px-4 py-2 rounded flex">
+                  閉じる
+                </button>
+                <a
+                  href={tweetUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="bg-blue-500 text-white px-4 py-2 rounded flex"
+                >
+                  Xで共有する
+                </a>
+              </div>
             </div>
           </div>
-        </div>
-      )}
+        )}
 
-      <div className="mt-4 text-center">
-        <Link to="/mainPage" className="text-blue-500 hover:text-blue-700">メインページへ</Link>
+        <div className="mt-4 text-center">
+          <Link to="/mainPage" className="text-blue-500 hover:text-blue-700">メインページへ</Link>
+        </div>
       </div>
-    </div>
+    </HelmetProvider>
   );
 };
 
