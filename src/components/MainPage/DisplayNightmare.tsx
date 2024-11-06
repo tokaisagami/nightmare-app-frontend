@@ -46,14 +46,16 @@ const DisplayNightmare: React.FC = () => {
   return (
     <HelmetProvider>
       <div className="flex flex-col justify-center items-center mt-8">
-        <Helmet>
-          <meta property="og:title" content="Nightmare App - Conquer Your Nightmares, Embrace a Brighter Day!" />
-          <meta property="og:description" content="悪夢を記録し、その内容を解決することでスッキリとした一日を過ごせることを目的としたアプリ。" />
-          <meta property="og:image" content={`${import.meta.env.VITE_APP_DOMAIN_NAME}/images/nightmare-app_OGP.png`} />
-          <meta property="og:url" content={`${import.meta.env.VITE_APP_DOMAIN_NAME}/nightmares/${nightmareId}`} />
-          <meta property="og:type" content="website" />
-          <meta property="og:site_name" content="Nightmare App" />
-        </Helmet>
+        {nightmareId && (
+          <Helmet>
+            <meta property="og:title" content="Nightmare App - Conquer Your Nightmares, Embrace a Brighter Day!" />
+            <meta property="og:description" content="悪夢を記録し、その内容を解決することでスッキリとした一日を過ごせることを目的としたアプリ。" />
+            <meta property="og:image" content={`${import.meta.env.VITE_APP_DOMAIN_NAME}/images/nightmare-app_OGP.png`} />
+            <meta property="og:url" content={`${import.meta.env.VITE_APP_DOMAIN_NAME}/nightmares/${nightmareId}`} />
+            <meta property="og:type" content="website" />
+            <meta property="og:site_name" content="Nightmare App" />
+          </Helmet>
+        )}
         <div className="bg-green-100 shadow-lg p-6 rounded-lg w-[95%] mx-auto border border-gray-300">
           <h1 className="text-2xl font-bold mb-4">改変された悪夢内容</h1>
           <p className="whitespace-pre-wrap">{modified_description}</p>
