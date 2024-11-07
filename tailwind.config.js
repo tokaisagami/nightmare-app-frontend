@@ -1,5 +1,5 @@
 /** @type {import('tailwindcss').Config} */
-const config = {
+module.exports = {
   mode: 'jit',
   content: [
     "./src/**/*.{js,jsx,ts,tsx}",
@@ -12,9 +12,10 @@ const config = {
         Shizuru: ['Shizuru', 'sans-serif'],
         KaiseiOpti: ['Kaisei Opti', 'sans-serif'],
       },
+      colors: {
+        'title': '#d850ff', // カスタムカラーを追加
+      },
     },
   },
   plugins: [],
 };
-
-module.exports = config; // CommonJS形式でエクスポート
