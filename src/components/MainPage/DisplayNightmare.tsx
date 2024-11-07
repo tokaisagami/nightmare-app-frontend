@@ -53,6 +53,7 @@ const DisplayNightmare: React.FC = () => {
             <meta property="og:url" content={`${import.meta.env.VITE_APP_DOMAIN_NAME}/nightmares/${nightmareId}`} />
             <meta property="og:type" content="website" />
             <meta property="og:site_name" content="Nightmare App" />
+            <meta name="twitter:card" content="summary_large_image" />
           </Helmet>
         )}
         <div className="bg-green-100 shadow-lg p-6 rounded-lg w-[95%] mx-auto border border-gray-300">
