@@ -54,6 +54,8 @@ const DisplayNightmare: React.FC = () => {
             <meta property="og:type" content="website" />
             <meta property="og:site_name" content="Nightmare App" />
             <meta name="twitter:card" content="summary_large_image" />
+            <meta name='twitter:title' content='Nightmare App' />
+            <meta name='twitter:description' content='AIで悪夢を改変し、すっきりした気分になりましょう！' />
           </Helmet>
         )}
         <div className="bg-green-100 shadow-lg p-6 rounded-lg w-[95%] mx-auto border border-gray-300">
