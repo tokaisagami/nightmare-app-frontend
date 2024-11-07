@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Helmet, HelmetProvider } from 'react-helmet-async'; // react-helmet-asyncを使用
+import { Helmet, HelmetProvider } from 'react-helmet-async';
 import { Link, useLocation } from 'react-router-dom';
 
 const DisplayNightmare: React.FC = () => {
