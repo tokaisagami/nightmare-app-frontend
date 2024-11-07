@@ -49,13 +49,14 @@ const DisplayNightmare: React.FC = () => {
         {nightmareId && (
           <Helmet>
             <meta property="og:image" content={`${import.meta.env.VITE_APP_DOMAIN_NAME}/images/nightmare-app_OGP.png`} />
+            <meta property="og:description" content="AIで悪夢を改変し、すっきりした気分になりましょう！" />
             <meta property="og:title" content="Nightmare App" />
             <meta property="og:url" content={`${import.meta.env.VITE_APP_DOMAIN_NAME}/nightmares/${nightmareId}`} />
             <meta property="og:type" content="website" />
             <meta property="og:site_name" content="Nightmare App" />
             <meta name="twitter:card" content="summary_large_image" />
-            <meta name='twitter:title' content='Nightmare App' />
-            <meta name='twitter:description' content='AIで悪夢を改変し、すっきりした気分になりましょう！' />
+            <meta name="twitter:title" content="Nightmare App" />
+            <meta name="twitter:description" content="AIで悪夢を改変し、すっきりした気分になりましょう！" />
           </Helmet>
         )}
         <div className="bg-green-100 shadow-lg p-6 rounded-lg w-[95%] mx-auto border border-gray-300">
