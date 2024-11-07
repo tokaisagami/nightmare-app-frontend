@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../../store/store';
 import { logout } from '../../store/slices/authSlice';
 import { useNavigate } from 'react-router-dom';
+import logo from '../../assets/Title-Logo2.png';
 
 const Header = () => {
   const isLoggedIn = useSelector((state: RootState) => state.auth.isLoggedIn);
@@ -16,8 +17,8 @@ const Header = () => {
   };
 
   return (
-    <header className="bg-purple-500 text-white p-4 flex justify-between items-center">
-      <h1 className="text-xl font-bold">Nigtmare-app</h1>
+    <header className="bg-title text-white p-4 flex justify-between items-center">
+      <img src={logo} alt="Nightmare App" className="h-12 w-auto" />
       {isLoggedIn ? (
         <nav>
           <ul className="flex space-x-4">
