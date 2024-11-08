@@ -8,6 +8,7 @@ interface Nightmare {
   description: string;
   modified_description: string;
   author: string;
+  ending_category: string;
 }
 
 const MainPage: React.FC = () => {
@@ -42,6 +43,7 @@ const MainPage: React.FC = () => {
         }
         const data = await response.json();
         setNightmares(data);
+        console.log(data);
       } catch (error: any) {
         setError(error.message);
       } finally {
@@ -76,6 +78,7 @@ const MainPage: React.FC = () => {
                 description={nightmare.description.length > 50 ? nightmare.description.substring(0, 50) + '...' : nightmare.description}
                 modified_description={nightmare.modified_description}
                 author={nightmare.author}
+                ending_category={nightmare.ending_category}
               />
             </Link>
           ))}
