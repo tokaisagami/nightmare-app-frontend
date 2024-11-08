@@ -26,6 +26,9 @@ const Header = () => {
               <a className="hover:text-gray-400" href="/mypage">マイページ</a>
             </li>
             <li>
+              <a className="hover:text-gray-400" href="/mainPage">メインページ</a>
+            </li>
+            <li>
               <button className="hover:text-gray-400" onClick={handleLogout}>ログアウト</button>
             </li>
           </ul>
