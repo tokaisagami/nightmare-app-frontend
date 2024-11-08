@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { BrowserRouter as Router, Route, Routes, useLocation } from 'react-router-dom';
 import LoginPage from './components/Login/LoginPage';
 import Header from './components/Header/Header';
 import UserSignupPage from './components/Signup/UserSignupPage';
@@ -11,6 +11,8 @@ import DisplayNightmare from './components/MainPage/DisplayNightmare';
 import HomePage from './components/HomePage/HomePage';
 import MyPage from './components/MyPage/MyPage';
 import { login } from './store/slices/authSlice';
+import { startLoading, stopLoading } from './store/slices/loadingSlice'; // ローディングアクションのインポート
+import { RootState } from './store/store'; // RootStateをインポート
 
 const routes = [
   { path: '/', element: <HomePage /> }, 
@@ -25,7 +27,10 @@ const routes = [
 
 function App() {
   const dispatch = useDispatch();
+  const loading = useSelector((state: RootState) => state.loading); // ローディング状態の取得
+
   useEffect(() => {
+    dispatch(startLoading()); // ローディング開始
     const token = localStorage.getItem('authToken');
     if (token) {
       const base64Url = token.split('.')[1];
@@ -48,20 +53,30 @@ function App() {
           const user = { id: userId, name: data.name, email: data.email }; // idを追加
           console.log(user); // ここでユーザー情報を確認
           dispatch(login(user)); // ユーザー情報を渡してログイン状態を更新
+          dispatch(stopLoading()); // ローディング終了
         })
-        .catch(error => console.error('Error fetching user data:', error));      
+        .catch(error => {
+          console.error('Error fetching user data:', error);
+          dispatch(stopLoading()); // ローディング終了
+        });
+    } else {
+      dispatch(stopLoading()); // トークンがない場合もローディング終了
     }
   }, [dispatch]);
-    
+
   return (
     <Router>
       <div className="min-h-screen">
         <Header />
-        <Routes>
-          {routes.map((route, index) => (
-            <Route key={index} path={route.path} element={route.element} />
-          ))}
-        </Routes>
+        {loading ? (
+          <div>Loading...</div>
+        ) : (
+          <Routes>
+            {routes.map((route, index) => (
+              <Route key={index} path={route.path} element={route.element} />
+            ))}
+          </Routes>
+        )}
       </div>
     </Router>
   );
