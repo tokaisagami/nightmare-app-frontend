@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
+import Loading from '../../components/Loading/Loading'; // カスタマイズしたローディングアニメーションをインポート
 
 interface Nightmare {
   id: number;
@@ -48,7 +49,7 @@ const NightmareDetail: React.FC = () => {
   }, [id]);
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <Loading />;
   }
   if (error) {
     return <div>Error: {error}</div>;

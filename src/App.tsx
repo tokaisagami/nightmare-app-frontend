@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { BrowserRouter as Router, Route, Routes, useLocation } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import LoginPage from './components/Login/LoginPage';
 import Header from './components/Header/Header';
 import UserSignupPage from './components/Signup/UserSignupPage';
@@ -13,6 +13,8 @@ import MyPage from './components/MyPage/MyPage';
 import { login } from './store/slices/authSlice';
 import { startLoading, stopLoading } from './store/slices/loadingSlice'; // ローディングアクションのインポート
 import { RootState } from './store/store'; // RootStateをインポート
+import './loading.css'; // ローディング用のCSSをインポート
+import Loading from './components/Loading/Loading'; // カスタマイズしたローディングアニメーションをインポート
 
 const routes = [
   { path: '/', element: <HomePage /> }, 
@@ -69,7 +71,7 @@ function App() {
       <div className="min-h-screen">
         <Header />
         {loading ? (
-          <div>Loading...</div>
+          <Loading /> // カスタマイズしたローディングコンポーネントを表示
         ) : (
           <Routes>
             {routes.map((route, index) => (

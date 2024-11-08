@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import PostCard from './PostCard/PostCard';
 import { Link, useNavigate } from 'react-router-dom';
+import Loading from '../../components/Loading/Loading'; // カスタマイズしたローディングアニメーションをインポート
 
 interface Nightmare {
   id: number;
@@ -51,7 +52,7 @@ const MainPage: React.FC = () => {
   }, []);
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <Loading />;
   }
   if (error) {
     return <div>Error: {error}</div>;
