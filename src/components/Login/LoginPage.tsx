@@ -38,11 +38,15 @@ const LoginPage = () => {
         navigate('/mainPage'); // 仮のトップページに遷移
       } else {
         console.error('Login failed:', data);
+        setMessage('ログインに失敗しました。メールアドレスまたはパスワードが間違っています。');
+        setMessageType('error');
       }
     } catch (error) {
       console.error('Error:', error);
+      setMessage('ログイン中にエラーが発生しました。もう一度お試しください。');
+      setMessageType('error');
     }
-  };    
+  };
 
   // const handleGuestLogin = async () => {
   //   try {
