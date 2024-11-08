@@ -17,7 +17,7 @@ import './loading.css'; // ローディング用のCSSをインポート
 import Loading from './components/Loading/Loading'; // カスタマイズしたローディングアニメーションをインポート
 
 const routes = [
-  { path: '/', element: <HomePage /> }, 
+  { path: '/', element: <HomePage /> },
   { path: '/login', element: <LoginPage /> },
   { path: '/signup', element: <UserSignupPage /> },
   { path: '/mainPage', element: <MainPage /> },
@@ -37,12 +37,12 @@ function App() {
     if (token) {
       const base64Url = token.split('.')[1];
       const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
-      const jsonPayload = decodeURIComponent(atob(base64).split('').map(function(c) {
+      const jsonPayload = decodeURIComponent(atob(base64).split('').map(function (c) {
         return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
       }).join(''));
       const payload = JSON.parse(jsonPayload);
       const userId = payload.user_id; // トークンのペイロードからユーザーIDを取得
-  
+
       // バックエンドからユーザー情報を取得
       fetch(`${import.meta.env.VITE_APP_API_URL}/api/v1/users/${userId}`, {
         headers: {
@@ -68,7 +68,7 @@ function App() {
 
   return (
     <Router>
-      <div className="min-h-screen">
+      <div className="min-h-screen pt-16"> {/* 64px(16rem)のパディングトップを追加 */}
         <Header />
         {loading ? (
           <Loading /> // カスタマイズしたローディングコンポーネントを表示
