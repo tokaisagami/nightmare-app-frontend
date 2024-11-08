@@ -1,13 +1,16 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import Loading from '../Loading/Loading'; // カスタマイズしたローディングコンポーネントをインポート
 
 const InputNightmare: React.FC = () => {
   const [description, setDescription] = useState('');
   const [ending_category, setEnding_category] = useState('0');
+  const [loading, setLoading] = useState(false); // ローディング状態を管理するStateを追加
   const navigate = useNavigate();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setLoading(true); // ローディング開始
     const token = localStorage.getItem('authToken');
     console.log('Token:', token);
 
@@ -22,11 +25,14 @@ const InputNightmare: React.FC = () => {
 
     if (!response.ok) {
       console.error('Error:', response.statusText);
+      setLoading(false); // ローディング終了
       return;
     }
 
     const data = await response.json();
     console.log(data);
+
+    setLoading(false); // ローディング終了
 
     // 改変結果を表示する画面に遷移する処理を追加
     navigate('/modified-nightmare', { state: { 
@@ -38,6 +44,7 @@ const InputNightmare: React.FC = () => {
 
   return (
     <div className="flex flex-col justify-center items-center mt-8">
+      {loading && <Loading />} {/* ローディング状態に応じてローディングアニメーションを表示 */}
       <form className="bg-pink-100 shadow-lg p-6 rounded-lg w-[95%] mx-auto border border-gray-300" onSubmit={handleSubmit}>
         <h1 className="text-2xl font-bold mb-4">悪夢を入力してください</h1>
         <div className="mb-4">
