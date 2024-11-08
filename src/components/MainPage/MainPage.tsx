@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import PostCard from './PostCard/PostCard';
 import { Link, useNavigate } from 'react-router-dom';
-import Loading from '../../components/Loading/Loading'; // カスタマイズしたローディングアニメーションをインポート
+import Loading from '../Loading/Loading'; // カスタマイズしたローディングアニメーションをインポート
 
 interface Nightmare {
   id: number;
@@ -67,7 +67,7 @@ const MainPage: React.FC = () => {
       </button>      
       <div className="bg-pink-100 shadow-lg p-6 rounded-lg w-[95%] mx-auto border border-gray-300"> {/* 大きな枠を薄いピンクに設定 */}
         <header className="main-header text-center mb-6">
-          <h1 className="text-2xl font-bold">救済された悪夢たち</h1>
+          <h1 className="text-2xl font-bold">みんなの悪夢</h1>
         </header>
         <main className="grid grid-cols-3 gap-4"> {/* 3列に設定 */}
           {currentNightmares.map((nightmare) => (

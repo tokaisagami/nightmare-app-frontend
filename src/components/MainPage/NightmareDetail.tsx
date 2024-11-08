@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
-import Loading from '../../components/Loading/Loading'; // カスタマイズしたローディングアニメーションをインポート
+import Loading from '../Loading/Loading'; // カスタマイズしたローディングアニメーションをインポート
 
 interface Nightmare {
   id: number;
