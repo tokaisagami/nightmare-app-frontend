@@ -14,7 +14,7 @@ module.exports = {
         KosugiMaru: ['Kosugi Maru', 'sans-serif'],
       },
       colors: {
-        'title': '#d850ff', // カスタムカラーを追加
+        'title': '#dd6dfe', // カスタムカラーを追加
       },
     },
   },
