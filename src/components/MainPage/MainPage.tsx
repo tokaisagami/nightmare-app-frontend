@@ -70,7 +70,9 @@ const MainPage: React.FC = () => {
       </button>      
       <div className="bg-pink-100 shadow-lg p-6 rounded-lg w-[95%] mx-auto border border-gray-300"> {/* 大きな枠を薄いピンクに設定 */}
         <header className="main-header text-center mb-6">
-          <h1 className="text-2xl font-bold font-KaiseiOpti">みんなの悪夢</h1>
+          <div>
+            <img src="src/assets/Mainpage-title.png" alt="みんなの悪夢" className="mx-auto mb-4" />
+          </div>
         </header>
         <main className="grid grid-cols-3 gap-4"> {/* 3列に設定 */}
           {currentNightmares.map((nightmare) => (

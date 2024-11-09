@@ -33,7 +33,7 @@ const PostCard: React.FC<PostCardProps> = ({ description, modified_description, 
   const formattedDate = `${date.getFullYear()}/${String(date.getMonth() + 1).padStart(2, '0')}/${String(date.getDate()).padStart(2, '0')} ${String(date.getHours()).padStart(2, '0')}:${String(date.getMinutes()).padStart(2, '0')}:${String(date.getSeconds()).padStart(2, '0')}`;
 
   return (
-    <div className="post-card p-4 mb-4 border rounded-xl shadow-lg bg-white h-full">
+    <div className="post-card p-4 mb-4 rounded-xl shadow-lg bg-white h-full border-solid border-4 border-indigo-100">
       {endingImage && <img src={endingImage} alt="サムネイル" className="mx-auto mb-4" />}
       <h3 className="text-lg md:text-lg lg:text-lg font-semibold text-center mb-4 font-KaiseiOpti">{author}さんの悪夢</h3>
       <p className="text-sm text-gray-700 mb-4 font-KaiseiOpti">
