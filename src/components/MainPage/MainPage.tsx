@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import PostCard from './PostCard/PostCard';
 import { Link, useNavigate } from 'react-router-dom';
 import Loading from '../Loading/Loading'; // カスタマイズしたローディングアニメーションをインポート
+import MainpageTitle from '../../assets/Mainpage-title.png';
 
 interface Nightmare {
   id: number;
@@ -71,7 +72,7 @@ const MainPage: React.FC = () => {
       <div className="bg-pink-100 shadow-lg p-6 rounded-lg w-[95%] mx-auto border border-gray-300"> {/* 大きな枠を薄いピンクに設定 */}
         <header className="main-header text-center mb-6">
           <div>
-            <img src="src/assets/Mainpage-title.png" alt="みんなの悪夢" className="mx-auto mb-4" />
+            <img src={MainpageTitle} alt="みんなの悪夢" className="mx-auto mb-4" />
           </div>
         </header>
         <main className="grid grid-cols-3 gap-4"> {/* 3列に設定 */}
