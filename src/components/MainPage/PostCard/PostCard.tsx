@@ -1,4 +1,6 @@
 import React from 'react';
+import Happy_End from '../../../assets/nightmare-card/HAPPY-END.png';
+import Unexpected_End from '../../../assets/nightmare-card/unexpected-end.png';
 
 interface PostCardProps {
   description: string;
@@ -11,8 +13,8 @@ interface PostCardProps {
 const PostCard: React.FC<PostCardProps> = ({ description, modified_description, author, ending_category, created_at }) => {
   // サムネイル画像の決定
   const endingImage = {
-    happy_end: 'src/assets/nightmare-card/HAPPY-END.png',
-    unexpected_end: 'src/assets/nightmare-card/unexpected-end.png'
+    happy_end: Happy_End,
+    unexpected_end: Unexpected_End
   }[ending_category];
 
   // ending_categoryに基づく表示内容を決定
