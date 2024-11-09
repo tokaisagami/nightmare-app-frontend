@@ -10,6 +10,7 @@ interface Nightmare {
   modified_description: string;
   ending_category: string;
   published: boolean;
+  created_at: string;
 }
 
 const MyPage: React.FC = () => {
@@ -99,7 +100,7 @@ const MyPage: React.FC = () => {
         <p className="text-lg md:text-xl lg:text-2xl mb-2">ユーザー名: {user?.name}</p>
         <p className="text-lg md:text-xl lg:text-2xl mb-2">メール: {user?.email}</p>
         <div>
-          <h2 className="text-xl mt-4 mb-2">投稿した悪夢内容</h2>
+          <h2 className="text-xl mt-4 mb-2">投稿した悪夢内容：</h2>
           {loading ? (
             <p>Loading...</p>
           ) : (
@@ -121,6 +122,7 @@ const MyPage: React.FC = () => {
                       }
                     </p>
                     <p className="text-sm">公開: {nightmare.published ? '公開中' : '非公開'}</p>
+                    <p className="text-sm">投稿日時: {new Date(nightmare.created_at).toLocaleString('ja-JP', { year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit' })}</p>
                     {nightmare.published ? (
                       <button
                         onClick={() => handleUnpublish(nightmare.id)}
