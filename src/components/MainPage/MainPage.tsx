@@ -9,6 +9,7 @@ interface Nightmare {
   modified_description: string;
   author: string;
   ending_category: string;
+  created_at: string;
 }
 
 const MainPage: React.FC = () => {
@@ -63,13 +64,13 @@ const MainPage: React.FC = () => {
     <div className="flex flex-col justify-center items-center mt-8"> {/* 上にマージンを追加 */}
       <button
         onClick={() => navigate('/input-nightmare')}
-        className="bg-blue-500 text-white px-4 py-2 rounded mb-4"
+        className="bg-blue-500 text-white text-xl px-6 py-4 rounded-xl mb-4 font-KosugiMaru border-double border-4 border-white"
       >
-        悪夢を入力する
+        悪夢を改変する
       </button>      
       <div className="bg-pink-100 shadow-lg p-6 rounded-lg w-[95%] mx-auto border border-gray-300"> {/* 大きな枠を薄いピンクに設定 */}
         <header className="main-header text-center mb-6">
-          <h1 className="text-2xl font-bold">みんなの悪夢</h1>
+          <h1 className="text-2xl font-bold font-KaiseiOpti">みんなの悪夢</h1>
         </header>
         <main className="grid grid-cols-3 gap-4"> {/* 3列に設定 */}
           {currentNightmares.map((nightmare) => (
@@ -79,6 +80,7 @@ const MainPage: React.FC = () => {
                 modified_description={nightmare.modified_description}
                 author={nightmare.author}
                 ending_category={nightmare.ending_category}
+                created_at={nightmare.created_at}
               />
             </Link>
           ))}
