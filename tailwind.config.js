@@ -11,6 +11,7 @@ module.exports = {
         kleeOne: ['Klee One', 'sans-serif'],
         Shizuru: ['Shizuru', 'sans-serif'],
         KaiseiOpti: ['Kaisei Opti', 'sans-serif'],
+        KosugiMaru: ['Kosugi Maru', 'sans-serif'],
       },
       colors: {
         'title': '#d850ff', // カスタムカラーを追加
