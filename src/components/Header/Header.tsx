@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../../store/store';
 import { logout } from '../../store/slices/authSlice';
 import { useNavigate } from 'react-router-dom';
+import logo from '../../assets/Title-Logo2.png';
 
 const Header = () => {
   const isLoggedIn = useSelector((state: RootState) => state.auth.isLoggedIn);
@@ -16,13 +17,16 @@ const Header = () => {
   };
 
   return (
-    <header className="bg-purple-500 text-white p-4 flex justify-between items-center">
-      <h1 className="text-xl font-bold">Nigtmare-app</h1>
+    <header className="bg-title text-white p-4 flex justify-between items-center fixed top-0 left-0 w-full z-50">
+      <img src={logo} alt="Nightmare App" className="h-12 w-auto" />
       {isLoggedIn ? (
         <nav>
           <ul className="flex space-x-4">
             <li>
               <a className="hover:text-gray-400" href="/mypage">マイページ</a>
+            </li>
+            <li>
+              <a className="hover:text-gray-400" href="/mainPage">メインページ</a>
             </li>
             <li>
               <button className="hover:text-gray-400" onClick={handleLogout}>ログアウト</button>
