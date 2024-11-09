@@ -35,20 +35,22 @@ const InputNightmare: React.FC = () => {
     setLoading(false); // ローディング終了
 
     // 改変結果を表示する画面に遷移する処理を追加
-    navigate('/modified-nightmare', { state: { 
-      modified_description: data.modified_description, 
-      description: description,
-      ending_category: ending_category 
-    } });    
+    navigate('/modified-nightmare', {
+      state: {
+        modified_description: data.modified_description,
+        description: description,
+        ending_category: ending_category
+      }
+    });
   };
 
   return (
     <div className="flex flex-col justify-center items-center mt-8">
       {loading && <Loading />} {/* ローディング状態に応じてローディングアニメーションを表示 */}
       <form className="bg-pink-100 shadow-lg p-6 rounded-lg w-[95%] mx-auto border border-gray-300" onSubmit={handleSubmit}>
-        <h1 className="text-2xl font-bold mb-4">悪夢を入力してください</h1>
+        <h1 className="text-2xl font-bold mb-4 font-KaiseiOpti">悪夢を入力してください</h1>
         <div className="mb-4">
-          <label className="block mb-2">悪夢内容：</label>
+          <label className="block mb-2 font-KaiseiOpti">悪夢内容：</label>
           <textarea
             value={description}
             onChange={(e) => setDescription(e.target.value)}
@@ -56,9 +58,9 @@ const InputNightmare: React.FC = () => {
           />
         </div>
         <div className="mb-4">
-          <label className="block mb-2">結末：</label>
+          <label className="block mb-2 font-KaiseiOpti">結末：</label>
           <div>
-            <label>
+            <label className="font-KaiseiOpti">
               <input
                 type="radio"
                 value="0"
@@ -67,7 +69,7 @@ const InputNightmare: React.FC = () => {
               />
               ハッピーエンド
             </label>
-            <label className="ml-4">
+            <label className="ml-4 font-KaiseiOpti">
               <input
                 type="radio"
                 value="1"
@@ -78,7 +80,7 @@ const InputNightmare: React.FC = () => {
             </label>
           </div>
         </div>
-        <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded">
+        <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded font-KosugiMaru">
           改変する
         </button>
       </form>
