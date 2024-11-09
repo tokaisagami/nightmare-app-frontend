@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
+import Loading from '../Loading/Loading'; // カスタマイズしたローディングアニメーションをインポート
 
 interface Nightmare {
   id: number;
@@ -48,7 +49,7 @@ const NightmareDetail: React.FC = () => {
   }, [id]);
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <Loading />;
   }
   if (error) {
     return <div>Error: {error}</div>;
@@ -59,12 +60,20 @@ const NightmareDetail: React.FC = () => {
 
   return (
     <div className="nightmare-detail flex flex-col justify-center items-center mt-8">
-      <div className="bg-white shadow-lg rounded-lg p-6 max-w-2xl w-full">
-        <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold text-center mb-4 font-zenKurenaido">{nightmare.author}さんの悪夢</h1>
-        <h3 className="text-lg font-semibold mb-2">悪夢内容：</h3>
-        <p className="border-l-4 border-rose-400 pl-4 text-gray-700 text-base md:text-lg lg:text-xl mb-2 break-words">{nightmare.description}</p>
-        <h3 className="text-lg font-semibold mb-2">改変された結末：</h3>
-        <p className="border-l-4 border-indigo-400 pl-4 text-gray-700 text-base md:text-lg lg:text-xl mb-2 break-words">{nightmare.modified_description}</p>
+      <div className="bg-white shadow-lg rounded-lg p-6 max-w-2xl w-full border-solid border-4 border-indigo-100">
+        <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold text-center mb-4 font-KaiseiOpti">{nightmare.author}さんの悪夢</h1>
+        <h3 className="text-lg font-semibold mb-2 font-KaiseiOpti">
+          <span className="inline-block text-rose-400">■</span> 悪夢内容：
+        </h3>
+        <p className="text-gray-700 text-base md:text-base lg:text-base mb-2 break-words">
+          {nightmare.description}
+        </p>
+        <h3 className="text-lg font-semibold mb-2 font-KaiseiOpti">
+        <span className="inline-block text-indigo-400">■</span> 改変された結末：
+        </h3>
+        <p className="text-gray-700 text-base md:text-base lg:text-base mb-2 break-words">
+          {nightmare.modified_description}
+        </p>
       </div>
       {isAuthenticated ? (
         <Link to="/mainPage" className="block text-center mt-6 text-blue-600 hover:text-blue-400 text-lg md:text-xl">

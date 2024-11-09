@@ -60,9 +60,9 @@ const DisplayNightmare: React.FC = () => {
           </Helmet>
         )}
         <div className="bg-green-100 shadow-lg p-6 rounded-lg w-[95%] mx-auto border border-gray-300">
-          <h1 className="text-2xl font-bold mb-4">改変された悪夢内容</h1>
-          <p className="whitespace-pre-wrap">{modified_description}</p>
-          <button onClick={handlePost} className="bg-blue-500 text-white px-4 py-2 rounded mt-4">
+          <h1 className="text-2xl font-bold mb-4 font-KaiseiOpti">改変された悪夢内容</h1>
+          <p className="whitespace-pre-wrap text-base">{modified_description}</p>
+          <button onClick={handlePost} className="bg-blue-500 text-white font-KosugiMaru px-4 py-2 rounded mt-4">
             投稿する
           </button>
         </div>
@@ -72,14 +72,14 @@ const DisplayNightmare: React.FC = () => {
             <div className="bg-white p-6 rounded shadow-lg text-center">
               <p>悪夢内容を投稿しました！</p>
               <div className="flex justify-around mt-4 space-x-4">
-                <button onClick={() => setShowModal(false)} className="bg-blue-500 text-white px-4 py-2 rounded flex">
+                <button onClick={() => setShowModal(false)} className="bg-blue-500 text-white font-KosugiMaru px-4 py-2 rounded flex">
                   閉じる
                 </button>
                 <a
                   href={tweetUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="bg-blue-500 text-white px-4 py-2 rounded flex"
+                  className="bg-blue-500 text-white font-KosugiMaru px-4 py-2 rounded flex"
                 >
                   Xで共有する
                 </a>
