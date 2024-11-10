@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import PostCard from './PostCard/PostCard';
 import { Link, useNavigate } from 'react-router-dom';
-import Loading from '../Loading/Loading'; // カスタマイズしたローディングアニメーションをインポート
+import Loading from '../Loading/Loading';
 import MainpageTitle from '../../assets/Mainpage-title.png';
 
 interface Nightmare {

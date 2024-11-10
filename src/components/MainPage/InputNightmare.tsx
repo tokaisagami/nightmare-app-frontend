@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Loading from '../Loading/Loading'; // カスタマイズしたローディングコンポーネントをインポート
+import Loading from '../Loading/Loading';
 
 const InputNightmare: React.FC = () => {
   const [description, setDescription] = useState('');
