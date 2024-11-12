@@ -62,20 +62,20 @@ const MainPage: React.FC = () => {
     return <div>Error: {error}</div>;
   }
   return (
-    <div className="flex flex-col justify-center items-center mt-8"> {/* 上にマージンを追加 */}
+    <div className="flex flex-col justify-center items-center mt-8">
       <button
         onClick={() => navigate('/input-nightmare')}
         className="bg-blue-500 text-white text-xl px-6 py-4 rounded-xl mb-4 font-KosugiMaru border-double border-4 border-white"
       >
         悪夢を改変する
       </button>      
-      <div className="bg-pink-100 shadow-lg p-6 rounded-lg w-[95%] mx-auto border border-gray-300"> {/* 大きな枠を薄いピンクに設定 */}
+      <div className="bg-pink-100 shadow-lg p-6 rounded-lg w-[95%] mx-auto border border-gray-300">
         <header className="main-header text-center mb-6">
           <div>
             <img src={MainpageTitle} alt="みんなの悪夢" className="mx-auto mb-4" />
           </div>
         </header>
-        <main className="grid grid-cols-3 gap-4"> {/* 3列に設定 */}
+        <main className="grid grid-cols-3 gap-4">
           {currentNightmares.map((nightmare) => (
             <Link key={nightmare.id} to={`/nightmares/${nightmare.id}`}>
               <PostCard
