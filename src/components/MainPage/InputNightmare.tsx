@@ -48,7 +48,7 @@ const InputNightmare: React.FC = () => {
     <div className="flex flex-col justify-center items-center mt-8">
       {loading && <Loading />} {/* ローディング状態に応じてローディングアニメーションを表示 */}
       <form
-        className="bg-pink-100 shadow-lg p-6 rounded-lg w-[95%] mx-auto border-solid border-4 border-pink-300"
+        className="bg-pink-100 shadow-lg p-6 rounded-lg w-[95%] mx-auto border-solid border-2 border-pink-300"
         onSubmit={handleSubmit}
       >
         <h1 className="text-2xl font-bold mb-4 font-KaiseiOpti">悪夢を入力してください</h1>
@@ -57,7 +57,7 @@ const InputNightmare: React.FC = () => {
           <textarea
             value={description}
             onChange={(e) => setDescription(e.target.value)}
-            className="w-full p-2 shadow-lg rounded border-solid border-4 border-pink-300"
+            className="w-full p-2 shadow-lg rounded border-solid border-2 border-pink-300"
           />
         </div>
         <div className="mb-4">
