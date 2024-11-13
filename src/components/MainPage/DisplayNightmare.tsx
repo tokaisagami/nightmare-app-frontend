@@ -59,9 +59,11 @@ const DisplayNightmare: React.FC = () => {
             <meta name="twitter:description" content="AIで悪夢を改変し、すっきりした気分になりましょう！" />
           </Helmet>
         )}
-        <div className="bg-green-100 shadow-lg p-6 rounded-lg w-[95%] mx-auto border border-gray-300">
+        <div className="bg-green-50 shadow-lg p-6 rounded-lg w-[95%] mx-auto border-solid border-4 border-green-300">
           <h1 className="text-2xl font-bold mb-4 font-KaiseiOpti">改変された悪夢内容</h1>
-          <p className="whitespace-pre-wrap text-base">{modified_description}</p>
+          <div className="bg-green-100 shadow-lg border-double rounded-lg p-6 border-4 border-green-300">
+            <p className="whitespace-pre-wrap text-base">{modified_description}</p>
+          </div>
           <button onClick={handlePost} className="bg-blue-500 text-white font-KosugiMaru px-4 py-2 rounded mt-4">
             投稿する
           </button>
