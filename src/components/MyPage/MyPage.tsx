@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store/store';
 import { Link } from 'react-router-dom';
-import Loading from '../Loading/Loading'; // カスタマイズしたローディングアニメーションをインポート
+import Loading from '../Loading/Loading';
 
 interface Nightmare {
   id: number;
