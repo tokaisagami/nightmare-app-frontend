@@ -93,7 +93,7 @@ const DisplayNightmare: React.FC = () => {
         )}
 
         <div className="mt-4 text-center">
-          <Link to="/mainPage" className="text-blue-500 hover:text-blue-700">メインページへ</Link>
+          <Link to="/mainPage" className="text-blue-500 hover:text-blue-700 font-KosugiMaru">メインページへ</Link>
         </div>
       </div>
     </HelmetProvider>

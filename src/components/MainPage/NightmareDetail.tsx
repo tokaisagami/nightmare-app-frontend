@@ -76,8 +76,8 @@ const NightmareDetail: React.FC = () => {
         </p>
       </div>
       {isAuthenticated ? (
-        <Link to="/mainPage" className="block text-center mt-6 text-blue-600 hover:text-blue-400 text-lg md:text-xl">
-          一覧へ戻る
+        <Link to="/mainPage" className="block font-KosugiMaru text-center mt-6 text-blue-600 hover:text-blue-400 text-lg md:text-xl">
+          メインページへ
         </Link>
       ) : (
         <Link to="/" className="block text-center mt-6 text-blue-600 hover:text-blue-400 text-lg md:text-xl">
