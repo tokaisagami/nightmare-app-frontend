@@ -103,7 +103,7 @@ const UserSignupPage: React.FC = () => {
   return (
     <div className="flex justify-center items-center min-h-screen bg-gray-100">
       <div className="bg-white p-8 rounded-lg shadow-md border border-gray-300 w-full max-w-md">
-        <h1 className="text-2xl mb-4 text-center">新規ユーザー登録</h1>
+        <h1 className="text-2xl mb-4 text-center font-KaiseiOpti">新規ユーザー登録</h1>
         {message && (
           <div className={`p-4 mb-4 text-sm rounded ${messageType === 'success' ? 'bg-green-200 text-green-800' : 'bg-red-200 text-red-800'}`}>
             {message}
@@ -111,7 +111,7 @@ const UserSignupPage: React.FC = () => {
         )}
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
-            <label className="block text-gray-700 mb-2">名前:</label>
+            <label className="block text-gray-700 mb-2 font-KaiseiOpti">名前:</label>
             <input
               type="text"
               value={name}
@@ -122,7 +122,7 @@ const UserSignupPage: React.FC = () => {
             />
           </div>
           <div className="mb-4">
-            <label className="block text-gray-700 mb-2">Email:</label>
+            <label className="block text-gray-700 mb-2 font-KaiseiOpti">Email:</label>
             <input
               type="email"
               value={email}
@@ -133,7 +133,7 @@ const UserSignupPage: React.FC = () => {
             />
           </div>
           <div className="mb-4 relative">
-            <label className="block text-gray-700 mb-2">パスワード:</label>
+            <label className="block text-gray-700 mb-2 font-KaiseiOpti">パスワード:</label>
             <div className="relative">
               <input
                 type={showPassword ? "text" : "password"}
@@ -167,7 +167,7 @@ const UserSignupPage: React.FC = () => {
           </div>
 
           <div className="mb-4 relative">
-            <label className="block text-gray-700 mb-2">パスワード（確認）:</label>
+            <label className="block text-gray-700 mb-2 font-KaiseiOpti">パスワード（確認）:</label>
             <div className="relative">
               <input
                 type={showPasswordConfirmation ? "text" : "password"}
@@ -186,7 +186,7 @@ const UserSignupPage: React.FC = () => {
             </div>
           </div>
           <div className="flex flex-col space-y-4 items-center">
-            <button type="submit" className="w-2/4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+            <button type="submit" className="w-2/4 bg-blue-500 hover:bg-blue-700 font-KosugiMaru text-white font-bold py-2 px-4 rounded">
               登録
             </button>
           </div>

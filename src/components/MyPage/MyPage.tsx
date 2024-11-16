@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store/store';
 import { Link } from 'react-router-dom';
-import Loading from '../Loading/Loading'; // カスタマイズしたローディングアニメーションをインポート
+import Loading from '../Loading/Loading';
 
 interface Nightmare {
   id: number;
@@ -126,14 +126,14 @@ const MyPage: React.FC = () => {
                     {nightmare.published ? (
                       <button
                         onClick={() => handleUnpublish(nightmare.id)}
-                        className="mt-2 bg-red-500 text-white px-4 py-2 rounded"
+                        className="mt-2 bg-red-500 text-white font-KosugiMaru px-4 py-2 rounded"
                       >
                         非公開にする
                       </button>
                     ) : (
                       <button
                         onClick={() => handlePublish(nightmare.id)}
-                        className="mt-2 bg-green-500 text-white px-4 py-2 rounded"
+                        className="mt-2 bg-green-500 text-white font-KosugiMaru px-4 py-2 rounded"
                       >
                         公開にする
                       </button>
@@ -145,7 +145,7 @@ const MyPage: React.FC = () => {
           )}
         </div>
         <div className="mt-4 text-center">
-          <Link to="/mainPage" className="text-blue-500 hover:text-blue-700">一覧ページへ</Link> {/* 一覧ページへのリンクを追加 */}
+          <Link to="/mainPage" className="text-blue-500 hover:text-blue-700 font-KosugiMaru">メインページへ</Link>
         </div>
       </div>
     </div>

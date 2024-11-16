@@ -1,19 +1,19 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 interface User {
-  id: number; // IDを追加
+  id: number;
   name: string;
   email: string;
 }
 
 interface AuthState {
   isLoggedIn: boolean;
-  user: User | null; // ユーザー情報を追加
+  user: User | null;
 }
 
 const initialState: AuthState = {
   isLoggedIn: false,
-  user: null, // 初期値を設定
+  user: null,
 };
 
 const authSlice = createSlice({
