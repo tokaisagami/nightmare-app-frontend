@@ -15,3 +15,16 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Zen Kurenaido', 'Klee One', 'Shizuru', 'Kaisei Opti', 'KosugiMaru'
     monospace;
 }
+
+/* メディアクエリの追加 */
+@media (max-width: 640px) {
+  body {
+    font-size: 14px;
+  }
+}
+
+@media (min-width: 641px) {
+  body {
+    font-size: 16px;
+  }
+}
