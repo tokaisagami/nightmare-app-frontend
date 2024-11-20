@@ -2,8 +2,8 @@ import React, { useEffect, useState, FormEvent } from 'react';
 import { useDispatch } from 'react-redux';
 import { register } from '../../store/slices/registerSlice';
 import { useNavigate } from 'react-router-dom'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'; // FontAwesomeのインポート
-import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons'; // 必要なアイコンのインポート
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import { zxcvbn, zxcvbnOptions } from '@zxcvbn-ts/core'
 import { ZxcvbnResult } from '@zxcvbn-ts/core/src/types'
 import * as zxcvbnCommonPackage from '@zxcvbn-ts/language-common'
