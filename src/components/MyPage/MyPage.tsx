@@ -94,8 +94,8 @@ const MyPage: React.FC = () => {
   }
 
   return (
-    <div className="mypage flex flex-col justify-center items-center mt-8">
-      <div className="bg-white shadow-lg rounded-lg p-6 max-w-2xl w-full">
+    <div className="mypage flex flex-col justify-center items-center mt-8 px-4 md:px-8 w-full">
+      <div className="bg-white shadow-lg rounded-lg p-6 max-w-2xl w-full mx-auto">
         <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold text-center mb-4">マイページ</h1>
         <p className="text-lg md:text-xl lg:text-2xl mb-2">ユーザー名: {user?.name}</p>
         <p className="text-lg md:text-xl lg:text-2xl mb-2">メール: {user?.email}</p>

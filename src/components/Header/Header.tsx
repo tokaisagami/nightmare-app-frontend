@@ -18,18 +18,18 @@ const Header = () => {
 
   return (
     <header className="bg-title text-white p-4 flex justify-between items-center fixed top-0 left-0 w-full z-50">
-      <img src={logo} alt="Nightmare App" className="h-12 w-auto" />
+      <img src={logo} alt="Nightmare App" className="h-8 sm:h-10 md:h-12 w-auto" />
       {isLoggedIn ? (
         <nav>
           <ul className="flex space-x-4">
             <li>
-              <a className="hover:text-gray-400 text-xs font-KosugiMaru sm:text-sm md:text-base" href="/mypage">マイページ</a>
+              <a className="hover:text-gray-400 text-xs font-KosugiMaru sm:text-xs md:text-base" href="/mypage">マイページ</a>
             </li>
             <li>
-              <a className="hover:text-gray-400 text-xs font-KosugiMaru sm:text-sm md:text-base" href="/mainPage">メインページ</a>
+              <a className="hover:text-gray-400 text-xs font-KosugiMaru sm:text-xs md:text-base" href="/mainPage">メインページ</a>
             </li>
             <li>
-              <button className="hover:text-gray-400 text-xs font-KosugiMaru sm:text-sm md:text-base" onClick={handleLogout}>ログアウト</button>
+              <button className="hover:text-gray-400 text-xs font-KosugiMaru sm:text-xs md:text-base" onClick={handleLogout}>ログアウト</button>
             </li>
           </ul>
         </nav>
@@ -37,7 +37,7 @@ const Header = () => {
         <nav>
           <ul className="flex space-x-4">
             <li>
-              <a className="hover:text-gray-400 text-xs font-KosugiMaru sm:text-sm md:text-base" href="/login">ログイン</a>
+              <a className="hover:text-gray-400 text-xs font-KosugiMaru sm:text-xs md:text-base" href="/login">ログイン</a>
             </li>
             {/* <li><a className="hover:text-gray-400" href="/signup">ゲストログイン</a></li> */}
           </ul>
