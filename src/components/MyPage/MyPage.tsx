@@ -99,6 +99,9 @@ const MyPage: React.FC = () => {
         <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold text-center mb-4">マイページ</h1>
         <p className="text-lg md:text-xl lg:text-2xl mb-2">ユーザー名: {user?.name}</p>
         <p className="text-lg md:text-xl lg:text-2xl mb-2">メール: {user?.email}</p>
+        <div className="mt-4 text-center">
+          <Link to="/account-settings" className="text-blue-500 hover:text-blue-700 font-KosugiMaru">アカウント設定へ</Link> {/* 新しいリンクの追加 */}
+        </div>
         <div>
           <h2 className="text-xl mt-4 mb-2">投稿した悪夢内容：</h2>
           {loading ? (
