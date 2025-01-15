@@ -28,8 +28,15 @@ const authSlice = createSlice({
       state.isLoggedIn = false;
       state.user = null; // ログアウト時にユーザー情報をクリア
     },
+    updateUser(state, action: PayloadAction<User>) { // 追加
+      if (state.user) {
+        state.user.name = action.payload.name;
+        state.user.email = action.payload.email;
+      }
+    },
   },
 });
 
-export const { login, logout } = authSlice.actions;
+export const { login, logout, updateUser } = authSlice.actions; // updateUser を追加
 export default authSlice.reducer;
+
