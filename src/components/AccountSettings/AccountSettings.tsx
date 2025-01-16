@@ -37,11 +37,11 @@ const AccountSettings: React.FC = () => {
   };
 
   return (
-    <div className="account-settings flex flex-col justify-center items-center mt-8 px-4 md:px-8 w-full">
-      <div className="bg-white shadow-lg rounded-lg p-6 max-w-2xl w-full mx-auto">
-        <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold text-center mb-4">アカウント設定</h1>
+    <div className="flex justify-center items-center min-h-screen bg-gray-50">
+      <div className="bg-white p-8 rounded-lg shadow-md border border-gray-300 w-full max-w-md">
+        <h1 className="text-2xl md:text-3xl lg:text-4xl font-KaiseiOpti text-center mb-4">アカウント設定</h1>
         <div className="mb-4">
-          <label className="block text-lg mb-2">ユーザー名</label>
+          <label className="block text-lg font-KaiseiOpti mb-2">ユーザー名</label>
           <input
             type="text"
             value={name}
@@ -50,7 +50,7 @@ const AccountSettings: React.FC = () => {
           />
         </div>
         <div className="mb-4">
-          <label className="block text-lg mb-2">メールアドレス</label>
+          <label className="block text-lg font-KaiseiOpti mb-2">メールアドレス</label>
           <input
             type="email"
             value={email}
@@ -58,12 +58,14 @@ const AccountSettings: React.FC = () => {
             className="w-full px-3 py-2 border rounded"
           />
         </div>
-        <button
-          onClick={handleSave}
-          className="mt-4 bg-blue-500 text-white px-4 py-2 rounded"
-        >
-          保存
-        </button>
+        <div className="flex flex-col space-y-4 items-center">
+          <button
+            onClick={handleSave}
+            className="w-1/4 bg-blue-500 hover:bg-blue-600 text-white font-KosugiMaru px-4 py-2 rounded"
+          >
+            保存
+          </button>
+        </div>
       </div>
     </div>
   );
