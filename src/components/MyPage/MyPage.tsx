@@ -18,7 +18,6 @@ const MyPage: React.FC = () => {
   const [nightmares, setNightmares] = useState<Nightmare[]>([]);
   const [loading, setLoading] = useState(true);
 
-  // useEffect以降の部分
   useEffect(() => {
     if (user?.id) {
       const fetchNightmares = async () => {
@@ -42,7 +41,6 @@ const MyPage: React.FC = () => {
     }
   }, [user?.id]);
 
-  // 非公開にする関数を追加
   const handleUnpublish = async (nightmareId: number) => {
     try {
       const response = await fetch(`${import.meta.env.VITE_APP_API_URL}/api/v1/nightmares/${nightmareId}`, {
@@ -89,6 +87,29 @@ const MyPage: React.FC = () => {
     }
   };
 
+  // 修正: 削除機能
+  const handleDelete = async (nightmareId: number) => {
+    if (window.confirm("本当にこの悪夢を削除しますか？")) {
+      try {
+        const response = await fetch(`${import.meta.env.VITE_APP_API_URL}/api/v1/nightmares/${nightmareId}`, {
+          method: 'DELETE',
+          headers: {
+            'Authorization': `Bearer ${localStorage.getItem('authToken')}`,
+            'Content-Type': 'application/json',
+          },
+        });
+
+        if (response.ok) {
+          setNightmares(nightmares.filter(nightmare => nightmare.id !== nightmareId));
+        } else {
+          console.error('Failed to delete nightmare');
+        }
+      } catch (error) {
+        console.error('Error deleting nightmare:', error);
+      }
+    }
+  };
+
   if (!user) {
     return <Loading />;
   }
@@ -129,18 +150,25 @@ const MyPage: React.FC = () => {
                     {nightmare.published ? (
                       <button
                         onClick={() => handleUnpublish(nightmare.id)}
-                        className="mt-2 bg-red-500 text-white font-KosugiMaru px-4 py-2 rounded"
+                        className="mt-2 bg-red-500 text-white font-KosugiMaru px-4 py-2 rounded mr-2"
                       >
                         非公開にする
                       </button>
                     ) : (
                       <button
                         onClick={() => handlePublish(nightmare.id)}
-                        className="mt-2 bg-green-500 text-white font-KosugiMaru px-4 py-2 rounded"
+                        className="mt-2 bg-green-500 text-white font-KosugiMaru px-4 py-2 rounded mr-2"
                       >
                         公開にする
                       </button>
                     )}
+                    {/* 修正: 削除ボタン */}
+                    <button
+                      onClick={() => handleDelete(nightmare.id)}
+                      className="mt-2 bg-gray-500 text-white font-KosugiMaru px-4 py-2 rounded"
+                    >
+                      削除
+                    </button>
                   </li>
                 ))}
               </ul>
