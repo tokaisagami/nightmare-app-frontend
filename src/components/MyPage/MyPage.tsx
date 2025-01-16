@@ -114,17 +114,22 @@ const MyPage: React.FC = () => {
     return <Loading />;
   }
 
+  // レスポンシブ対応のためにCSSクラスを修正
   return (
-    <div className="mypage flex flex-col justify-center items-center mt-8 px-4 md:px-8 w-full">
-      <div className="bg-white shadow-lg rounded-lg p-6 max-w-2xl w-full mx-auto">
-        <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold text-center mb-4">マイページ</h1>
-        <p className="text-lg md:text-xl lg:text-2xl mb-2">ユーザー名: {user?.name}</p>
-        <p className="text-lg md:text-xl lg:text-2xl mb-2">メール: {user?.email}</p>
-        <div className="mt-4 text-center">
-          <Link to="/account-settings" className="text-blue-500 hover:text-blue-700 font-KosugiMaru">アカウント設定へ</Link> {/* 新しいリンクの追加 */}
+    <div className="mypage flex flex-col items-center mt-8 px-4 md:px-8 w-full">
+      <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold text-center mb-4">マイページ</h1>
+      <div className="flex flex-col md:flex-row justify-between w-full max-w-6xl">
+        {/* ユーザー情報とアカウント設定の枠 */}
+        <div className="bg-white border border-gray-300 shadow-lg rounded-lg p-6 mb-4 md:mb-0 md:mr-4 w-full md:w-1/3" style={{ maxHeight: '200px' }}>
+          <p className="text-lg md:text-xl lg:text-lg mb-2">ユーザー名: {user?.name}</p>
+          <p className="text-lg md:text-xl lg:text-lg mb-2">メール: {user?.email}</p>
+          <div className="mt-4">
+            <Link to="/account-settings" className="text-blue-500 hover:text-blue-700 font-KosugiMaru">アカウント設定へ</Link>
+          </div>
         </div>
-        <div>
-          <h2 className="text-xl mt-4 mb-2">投稿した悪夢内容：</h2>
+        {/* 投稿された悪夢内容の枠 */}
+        <div className="bg-white border border-gray-300 shadow-lg rounded-lg p-6 w-full md:w-2/3 overflow-y-scroll" style={{ maxHeight: '600px' }}>
+          <h2 className="text-xl mb-2">投稿した悪夢内容：</h2>
           {loading ? (
             <p>Loading...</p>
           ) : (
@@ -133,7 +138,7 @@ const MyPage: React.FC = () => {
             ) : (
               <ul>
                 {nightmares.map(nightmare => (
-                  <li key={nightmare.id} className="mb-4">
+                  <li key={nightmare.id} className="mb-4 bg-gray-100 p-4 rounded-lg shadow-md">
                     <h3 className="text-lg font-semibold">{nightmare.description}</h3>
                     <p className="text-sm text-gray-600">{nightmare.modified_description}</p>
                     <p className="text-sm">
@@ -162,7 +167,6 @@ const MyPage: React.FC = () => {
                         公開にする
                       </button>
                     )}
-                    {/* 修正: 削除ボタン */}
                     <button
                       onClick={() => handleDelete(nightmare.id)}
                       className="mt-2 bg-gray-500 text-white font-KosugiMaru px-4 py-2 rounded"
@@ -174,9 +178,6 @@ const MyPage: React.FC = () => {
               </ul>
             )
           )}
-        </div>
-        <div className="mt-4 text-center">
-          <Link to="/mainPage" className="text-blue-500 hover:text-blue-700 font-KosugiMaru">メインページへ</Link>
         </div>
       </div>
     </div>
