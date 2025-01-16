@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../store/store';
 import { updateUser } from '../../store/slices/authSlice'; // 更新アクションをインポート
+import { Link } from 'react-router-dom';
 
 const AccountSettings: React.FC = () => {
   const user = useSelector((state: RootState) => state.auth.user);
@@ -65,6 +66,10 @@ const AccountSettings: React.FC = () => {
           >
             保存
           </button>
+          {/* パスワードリセット申請画面へのリンク */}
+          <Link to="/password-reset-request" className="text-blue-500 hover:text-blue-700 font-KosugiMaru text-center">
+            パスワードリセット申請はこちら
+          </Link>
         </div>
       </div>
     </div>
