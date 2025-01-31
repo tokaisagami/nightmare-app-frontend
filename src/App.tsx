@@ -10,6 +10,9 @@ import InputNightmare from './components/MainPage/InputNightmare';
 import DisplayNightmare from './components/MainPage/DisplayNightmare';
 import HomePage from './components/HomePage/HomePage';
 import MyPage from './components/MyPage/MyPage';
+import AccountSettings from './components/AccountSettings/AccountSettings';
+import PasswordResetRequest from './components/PasswordResetRequest/PasswordResetRequest';
+import PasswordReset from './components/PasswordReset/PasswordReset';
 import { login } from './store/slices/authSlice';
 import { startLoading, stopLoading } from './store/slices/loadingSlice'; // ローディングアクションのインポート
 import { RootState } from './store/store'; // RootStateをインポート
@@ -25,6 +28,9 @@ const routes = [
   { path: '/input-nightmare', element: <InputNightmare /> },
   { path: '/modified-nightmare', element: <DisplayNightmare /> },
   { path: '/mypage', element: <MyPage /> },
+  { path: '/account-settings', element: <AccountSettings /> }, // 新しいルートの追加
+  { path: '/password-reset-request', element: <PasswordResetRequest /> }, // 新しいルートの追加
+  { path: '/password-reset', element: <PasswordReset /> }, // 新しいルートの追加
 ];
 
 function App() {
